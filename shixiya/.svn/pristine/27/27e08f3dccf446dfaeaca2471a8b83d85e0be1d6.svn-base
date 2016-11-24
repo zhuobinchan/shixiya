@@ -1,0 +1,166 @@
+*{padding: 0;margin: 0;font-family: 微软雅黑;list-style: none;text-decoration: none;letter-spacing: 0.05em;word-wrap:break-word; }
+body,html{width: 100%;overflow-x: hidden;line-height: 1.6;background-color: #f5f5f5;position:relative;}
+input[type="button"], input[type="submit"], input[type="reset"],button{  -webkit-appearance: none;}
+textarea{ -webkit-appearance: none;}
+.cells{position: fixed;top: 0;z-index: 300;width: 100%;height: 56px;line-height: 56px;font-size: 1.2em;  letter-spacing: 1px;  text-align: center;  color: #0ba0d8;  background-color: #ffffff;  }
+.cell-img{position: fixed; top: 16px; left: 10px; height: 24px; width: auto; }
+.search{ position: fixed; top: 16px; right: 10px; height: 24px; width: auto; }
+#nav{position: absolute;z-index: 100;width: 100%;height: 65%;margin-top: 20%}
+#nav div{width: 100%;height: 16.7%;line-height: 56px;text-align: center;font-size: 1.1em;color: #075090;}
+.active{font-weight: bold;background: url("/shixiya/omg/images/nav-img.png") 10%  no-repeat;background-size: 100% 80%; }
+.active a{color: #de224a !important;}
+.main{width: 100%;z-index: 100;margin: 10px 0 100px 0;overflow:hidden;background-color: #f5f5f5}
+.wsq{position: fixed;right: 8%;bottom: 65px;z-index: 200;width: 50px;height: 50px;background: url("/shixiya/omg/images/wsq.png") no-repeat;background-size: 100% 100%}
+.foot-nav{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;position: fixed;bottom: 0;z-index: 500;width: 100%;background-color: #eeeeee;border-top: 1px solid #bec3c7;}
+.foot-nav a{display: block;-webkit-box-flex: 1;-webkit-flex: 1;-ms-flex: 1;flex: 1;padding: 7px 0 0;-webkit-tap-highlight-color: transparent;color: #075090 }
+.foot-nav>a>div{margin: 0 auto;width: 24px;height: 24px;}
+.foot-nav>a>div>i{display: block;width: 100%;height: 100%;background-size: 100% 100%}
+.i1{background: url("/shixiya/omg/images/tuwen/nav3.png")}
+.i2{background: url("/shixiya/omg/images/tuwen/nav2.png")}
+.i3{background: url("/shixiya/omg/images/tuwen/nav1.png")}
+.foot-nav>a>p{text-align: center;font-size: 12px;}
+.select{position: absolute;z-index: 101;top: 140px;width: 33%;height: 33px;padding-left: 6%;border-radius: 16px;border: none;font-size: 0.8em;color: #ffffff;background-color: #2f2f2f;opacity: .6}
+.select:first-child{left: 15%}
+.select:nth-child(2){left: 52%}
+
+
+/*====== 翻转课堂 ======*/
+.tuwen-container{margin:10px;background-color: #ffffff}
+.tuwen-model{ width: 92%; margin-bottom: 10px;margin-left: auto;margin-right: auto;padding: 2% 10px; }
+.add-bd{border: 1px solid #b8bdc3;border-radius: 5px }
+.tuwen-model a .title{color: #000}
+.tuwen-model a .txt{color: #808080!important;}
+.tuwen-model img{ width: 100%; }
+.title{font-size: 1.0em; line-height: 40px;color: #000;letter-spacing: 0.03em}
+.txt{margin-bottom: 5px;color: #666666!important;font-size: 12px;line-height: 1.4;overflow: hidden;text-overflow: ellipsis;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;}
+.show-all{margin: 12px 0;width: 100%;line-height: 28px;text-align: center;font-size: 0.8em;background-color: #f0edeb;color: #666666;}
+#show-all2{font-size: 0.7em;position:absolute;margin: -23px 0 0 300px;background-color: #b6d8e7;padding: 2px 5px;border-radius: 3px}
+.txt-footer{height: 15px;color: #333333;font-size: 0.6em;text-align: center;}
+.txt-footer img{height: 10px;width: auto;margin: 0 2px;}
+.fl{float: left;width: 40vw;text-align: left;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;}
+.fr{float: right;margin-left: 4%;}
+
+/*====== 职场情报站 ======*/
+.swiper{position: relative;z-index: 100;width: 100%;height: 190px; overflow: hidden}
+.swiper-container img{}
+.swiper-slide{height:190px!important;}
+.nav-contain {width: 92%;margin: 0 auto; padding: 5px;border: 1px solid #fefbeb;border-radius: 10px}
+.nav-contain img{width: 100%;}
+.title2{margin: 8px 14px;font-size: 1.0em; }
+.tuwen-model li{margin: 15px 0;height: 95px;overflow: hidden;line-height: 1.6;border-bottom: 1px solid #d9dcdd}
+.tuwen-model li a{display: -webkit-box;display: -webkit-flex;display: flex;color: #000}
+.img-show{-webkit-box-flex: 1;-webkit-flex: 1;flex: 1;width: 35%;height: 83px;overflow: hidden;margin-right: 10px;}
+.img-show>img{width: 100%;height: 100%;border-radius: 10px;}
+.txt-show{-webkit-box-flex: 2;-webkit-flex: 2;flex: 2;width: 60.8%;margin-top: -2px;line-height: 28px}
+@media screen and (max-width: 338px){
+    .img-show{height: 73px;margin-top: 6px;}
+}
+.s-title{font-size: 0.72em;line-height: 25px;}
+.txt2{font-size: 0.7em;letter-spacing: 0.08em;margin-top: 1px;color: #666666;line-height: 18px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1;display: -moz-box; -moz-box-orient: vertical; }
+.nav-name{height: 32px;width: 80%;margin: 10px auto 0 auto;}
+.nav-name ul li{line-height: 32px;float: left;text-align: center;width: 48%;margin: 0 1%;font-size: 14px;cursor: pointer;border-radius: 5px;background: #b6ddff;}
+.nav-name ul li:first-child{float: left}
+.nav-name ul li:last-child{float: right}
+.nav-name ul li a{color: #6c6c6c}
+.second-web{border-top: 1px solid #808080;margin-top: 5px}
+
+/*====== 培训 ======*/
+.class-nav{width: 100%;background: #c4c4c4;}
+.class-nav li{display: inline;line-height: 40px;padding: 0 0 0 5%;font-size: 0.7em}
+.txt2-footer{position: relative;color: #075090;font-size: 12px;}
+.txt2-footer>span{margin-left: 14px;margin-right: 8px}
+.tuwen-lis li{display: block;height: 83px;padding: 15px;border-bottom: 1px solid #cccccc}
+.tuwen-lis li a{display: -webkit-box;display: -webkit-flex;display: flex;}
+.time-icon,.num-icon{position: absolute;top: 8px;width: 12px;height: 12px;}
+.time-icon{background: url("/shixiya/omg/images/tuwen/time.png");background-size: 100% 100%}
+.num-icon{background: url("/shixiya/omg/images/tuwen/num.png");background-size: 100% 100%;}
+
+/*====== 介绍 ======*/
+.main-content{width: 100%;z-index: 100;word-wrap:break-word;margin-bottom: 65px}
+.main-content>button{display: block;margin: 5px auto;border: none!important;width: 60%;line-height: 43px;border-radius: 20px;font-size: 1.1em;color: #ffffff!important;}
+.blue-btn{background-color: #4162b3!important;}
+.yellow-btn{background-color: #e3a616!important;}
+.green-btn{background-color: #39aa6c!important;}
+.red-btn{background-color: red!important;}
+.gray-btn{background-color: #a7a3a3!important;}
+.main-content>a{display: block;text-align: center;color: #000;font-size: 0.7em}
+.main-content>a>img{height: 8px;width: auto}
+.primary{border-radius: 20px!important;width: 40px!important;}
+.header{width: 100%;}
+.header img{width: 100%;height: auto}
+.detail{margin: 0 6% 20px 6%}
+.line{width: 88%;margin: auto;height: 1px;background-color: #cccccc}
+.intro{margin: 20px 6%;min-height: 75px;}
+.img{float: left;margin-right: 10px;width: 75px;height: 75px;border-radius: 37px;overflow: hidden}
+.img img{width: 100%;height: 100%}
+.txt3{font-size: 0.7em;letter-spacing: 0.08em;color: #666666;line-height: 1.5}
+.RichText{margin-top: 60px;}
+.RichText img{width:100%;}
+#lesson{width: 80%;margin: 10px auto;font-size: 0.7em;border-radius: 5px;border: #c3c4c4 1px solid;}
+#lesson>li{border-bottom: #c3c4c4 1px solid;padding: 5px 8%;color: #4a4a4a}
+#lesson>li>img{width: 6px;height: 6px;margin-right: 5px}
+details{width: 100%;font-size: 14px}
+details>p{padding-left: 6%;line-height: 30px;color: #666666;border-bottom: #c3c4c4 1px dotted;}
+details>p:last-child,#lesson>li:last-child{border: none}
+
+/*====== 报名 ======*/
+.information{width: 100%;margin: 50px 0;font-size: 0.9em;text-align: center}
+.information p{margin: 20px 0}
+.information input{border: none;border-bottom:1px solid darkgray;margin-bottom: 10px;width: 40%}
+#enter1{width: 50%}
+
+/*====== 招聘咨询 ======*/
+.tb,.tb2{font-size: 0.7em;width: 100%;line-height: 1.5em;margin: 10px 0}
+.tb>div{display: inline-block;width: 24%;line-height: 24px;text-align: center;color: #6c6c6c;}
+.tb2>div{display: inline-block;width: 32%;line-height: 24px;text-align: center;color: #6c6c6c;}
+.visited2{font-weight: bold;color: #075090!important;}
+.recruit{width: 100%;}
+.recruit>p{line-height: 40px;border-bottom: #cccccc 1px solid;}
+.s-line{float: left;margin:14px 2% 12px 4%;height: 14px;width: 4px;border-radius: 2px;background-color: #075090}
+.recruit ul{width: 100%;background-color: #ffffff}
+.recruit ul li{padding:10px;border-bottom: #cccccc 1px solid;}
+.day-num{float: right;color: #075090;}
+.xs-title{font-size: 0.8em;color: #484848}
+.txt2-2{font-size: 0.7em;margin-top: 3px}
+.txt2-2 span{border-radius: 5px;padding: 1px 4px;;border: 1px solid #37629c;color: #37629c;margin-right:10px}
+.tr{text-align: right}
+.re-name{margin: 0 7px;line-height: 45px;text-align: center;font-size: 18px;color: #004e92;}
+.basic,.require,.address{margin: 0 7px;padding: 10px;}
+.require,.address{font-size: 14px}
+.re-name,.basic,.require{border-bottom: 1px solid #004e92}
+.basic>div{margin: 0 2%;font-size: 12px;color: #004e92}
+.basic>div>p{line-height: 24px}
+.basic div i{float: left;width: 21px;height: 18px;margin: 3px 5px}
+.adr-img{background: url("/shixiya/omg/images/tuwen/re-1.png")0 0/100% 100% no-repeat}
+.dat-img{background: url("/shixiya/omg/images/tuwen/re-2.png")0 0/100% 100% no-repeat}
+.spo-img{background: url("/shixiya/omg/images/tuwen/re-3.png")0 0/100% 100% no-repeat}
+.mny-img{background: url("/shixiya/omg/images/tuwen/re-4.png")0 0/100% 100% no-repeat}
+.basic div span{color: #000}
+.require>table td{vertical-align: baseline;}
+.address>p>span{margin-left: 2px}
+.cpn-logo{display: inline-block;width: 16px;height: 15px;}
+.cpn-logo>img{width: 100%;height: 100%}
+.rz{padding: 0 5px;border-radius: 5px;font-size: 12px;background-color: #f19149;color: #ffffff}
+
+/*======= 简历 =======*/
+.intro-tb{width: 90%;margin: 20px auto;border-collapse: collapse}
+.intro-tb tr td{width: 50%;height: 28px;border: 1px solid darkgray;font-size: 0.9em}
+.intro-tb tr td:last-child{padding-left: 6px}
+.intro-tb tr td:first-child{text-align: center;}
+
+.title,.title2,.s-title,.xs-title{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;color: #000;}
+
+/*======能力匹配=======*/
+.choose-ability{width: 78%;height: auto;padding: 23% 9% 23% 11%}
+.choose-ability div{float: left;width: 45%;line-height: 6vh;margin: 3% 3% 0 0;border:2px solid #075090;border-radius: 6vh;text-align: center;font-size: 15px;}
+.choose-ability div:last-child{border: none;padding-top: 2px;font-weight: bold;color: #075090;}
+.abl-xtb{display: inline-block;width: 10px;height: 10px;margin-right: 3px;background: url("/shixiya/omg/images/ability-xtb.png") 0 0/100% 100% no-repeat;}
+.chosen{background: #075090;color: #ffffff!important;}
+.choose-container{position: absolute;bottom: 15%;left: 5vw;width: 90vw;height: 40px;border-radius: 40px;line-height: 40px;font-size: 15px;text-align: center;color: #ffffff;background-color: #075090}
+.main2{text-align: center;color: #075090;padding-top: 35vh!important;}
+.main2-logo{width: 13vh;height: 13vh;margin: 5px auto;border-radius: 100%;overflow: hidden;background-color: #075090}
+.main2-logo>img{width: 100%;height:100%;}.main3{padding-bottom: 18vh}
+.main3-title{width: 86%;margin: 0 auto;padding: 15px 0 0 0;text-align: center;font-weight: bold;font-size: 18px;color: #075090}
+.line-dot{width: 100%;height: 2vw;margin-top: 5px;background: url("/shixiya/omg/images/ab3.png") 0 0/100% 100% no-repeat}
+.loading{position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 199;text-align: center;font-size: 16px;color: #ffffff;background-color: rgba(0,0,0,.5)}
+.loading>span{position: fixed;top: 43%;left: 0;width: 100%;}

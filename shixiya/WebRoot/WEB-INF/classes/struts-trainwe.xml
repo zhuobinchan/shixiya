@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="trainwe" extends="father" namespace="/">
+		
+		
+		 <!-- 培训we课堂 管理 --> 
+		<action name="*_AdminTrainWEAction" class="com.ehighsun.shixiya.administer.action.AdminTrainWEAction" method="{1}">
+			<result name="getAllTrainWEProduct">/admin/main.jsp</result>
+			<result name="addTrainWEProduct"  type="redirectAction">/admin/getAllTrainWEProduct_AdminTrainWEAction</result>
+			<result name="updateTrainWEProduct"  type="redirectAction">/admin/getAllTrainWEProduct_AdminTrainWEAction</result>
+			<result name="delete">/admin/main.jsp</result>
+			<result name="findByCondition">/admin/main.jsp</result>
+		</action>  
+        <!-- 培训we章节 管理 --> 
+		<action name="*_AdminTrainWEChildAction" class="com.ehighsun.shixiya.administer.action.AdminTrainWEChildAction" method="{1}">
+			<result name="getAllTrainWEProductChild">/admin/main.jsp</result>
+			<result name="addTrainWEProductChild"  type="redirectAction">/admin/getAllTrainWEProductChild_AdminTrainWEChildAction</result>
+			<result name="updateTrainWEProductChild"  type="redirectAction">/admin/getAllTrainWEProductChild_AdminTrainWEChildAction</result>
+			<result name="delete">/admin/main.jsp</result>
+			<result name="findByConditionChild">/admin/main.jsp</result>
+		</action> 		     
+		<!-- 培训we课堂 老师管理 -->  
+		<action name="*_AdminTrainWETeacherAction" class="com.ehighsun.shixiya.administer.action.AdminTrainWETeacherAction" method="{1}">
+			<result name="getAllTrainWETeacher">/admin/main.jsp</result>
+			<result name="toShowAllAction" type="redirectAction">/admin/getAllTrainWETeacher_AdminTrainWETeacherAction.action</result>
+			<result name="delete">/admin/main.jsp</result>
+			<result name="findByCondition">/admin/main.jsp</result>
+		</action>
+		
+		<!-- 培训we课堂 评论管理 -->
+		<action name="*_AdminTrainWEComment" class="com.ehighsun.shixiya.administer.action.AdminTrainWEComment" method="{1}">
+			<result name="getAllTrainWEComment">/admin/main.jsp</result>
+			<result name="delete">/admin/main.jsp</result>
+			<result name="getByCondition">/admin/main.jsp</result>
+		</action>
+		
+		<!-- 培训we课堂 广告管理 -->
+		<action name="*_AdminTrainWEAdvAction"
+			class="com.ehighsun.shixiya.administer.action.AdminTrainWEAdvAction"
+			method="{1}">
+			<result name="showAdv" type="chain">enterAdminMain</result>
+			<result name="addAdv" type="redirectAction">/admin/showAdv_AdminTrainWEAdvAction</result>
+			<result name="deleteAdv" type="chain">showAdv_AdminTrainWEAdvAction</result>
+			<result name="deleteAdvs" type="chain">showAdv_AdminTrainWEAdvAction</result>
+			<result name="findByStatus" type="chain">enterAdminMain</result>
+			<result name="updateAdv" type="chain">showAdv_AdminTrainWEAdvAction</result>
+		</action>
+		
+		<action name="*_TrainWEAction" class="com.ehighsun.shixiya.student.action.TrainWEAction" method="{1}">
+        	<result name="getTrainWEChildById">/omg/html/curriculum/fourth/childWeb4.jsp</result>
+        </action>
+        
+        <!-- 培训WE课堂 讲师端登陆 -->
+		<action name="*_TrainerLoginAction"
+			class="com.ehighsun.shixiya.trainer.action.TrainerLoginAction"
+			method="{1}">
+			<result name="trainerLogin" type="redirectAction">/OMG_login/html/login/getWeCourseByTrainer_TrainerTeacherAction
+			</result>
+			<result name="error">/OMG_login/html/login/trainerLogin.jsp</result>
+		</action>
+		<!-- 培训WE课堂 讲师端课程显示 -->
+		<action name="*_TrainerTeacherAction"
+			class="com.ehighsun.shixiya.trainer.action.TrainerTeacherAction" method="{1}">
+			<result name="getWeCourseByTrainer">/OMG_login/html/login/trainerList.jsp
+			</result>
+			<result name="error">/OMG_login/html/login/trainerLogin.jsp</result>
+		</action>
+	</package>
+</struts>

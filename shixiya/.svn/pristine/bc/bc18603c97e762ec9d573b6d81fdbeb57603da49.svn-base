@@ -1,0 +1,163 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+button{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+/*===== 视频播放 =====*/
+.video{
+    width: 100%;
+    height: 32%;
+    background-color: #000;
+    z-index: 200;
+}
+.chat{
+    width: 100%;
+    height: 60%;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.ly{
+    position: fixed;
+    left: 35%;
+    top: 55%;
+    z-index: 200;
+    width: 30%;
+    height: 102px;
+    text-align: center;
+    background-color: rgba(106,106,106,.5);
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-family: 微软雅黑;
+}
+#alert{
+    position: fixed;
+    left: 20%;
+    bottom: 10%;
+    z-index: 200;
+    width: 60%;
+    text-align: center;
+    background-color: rgba(106,106,106,.8);
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-family: 微软雅黑;
+    font-size: 0.9em;
+    border-radius: 3px;
+}
+/*====== 右边聊天信息 ======*/
+.chat-content{
+    z-index: 100;
+    width: 96%;
+    float: right;
+    margin: 10px 2%;
+}
+.head1{
+    float: right;
+    width: 50px;
+    height: 50px;
+}
+.content{
+    position: relative;
+    float: right;
+    margin-right: 5px;
+    max-width: 65%;
+    overflow:hidden;
+    word-wrap:break-word;
+}
+.ni-name{
+    font-size: 0.8em;
+    color: #6c6c6c;
+    position: absolute;
+    right: 4%;
+}
+.word{
+    margin-top: 18px;
+    background: url("../images/dhk.png") no-repeat;
+    background-size: 100% 100%;
+    padding: 5px 20px;
+    line-height: 25px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+/*====== 左边聊天信息 ======*/
+/*.chat-content2{*/
+    /*width: 100%;*/
+    /*float: left;*/
+    /*margin: 10px;*/
+/*}*/
+.head2{
+    float: left;
+}
+.content2{
+    position: relative;
+    float: left;
+    margin-left: 5px;
+    max-width: 65%;
+    word-wrap:break-word;
+}
+.ni-name2{
+    font-size: 0.8em;
+    color: #6c6c6c;
+    position: absolute;
+    left: 4%;
+}
+.word2{
+    margin-top: 18px;
+    background: url("../images/dhk2.png") no-repeat;
+    background-size: 100% 100%;
+    padding: 5px 20px;
+    line-height: 25px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+.yy{
+    margin-top: 18px;
+    height: 30px;
+}
+.send{
+    width: 100%;
+    height: 50px;
+    background-color: #dcdddd;
+    position: fixed;
+    bottom: 0;
+    z-index: 200;
+}
+.send-word{
+    height: 100%;
+}
+.send img{
+    height: 100%;
+    width: 15%;
+    float: left;
+}
+.send-word input{
+    height: 36px;
+    width: 65%;
+    margin-top: 7px;
+    border: none;
+    font-size: 1.1em;
+}
+.send-word button{
+    height: 70%;
+    width: 15%;
+    margin-top: 1%;
+    font-size: 1.1em;
+}
+.send-sound{
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    font-size: 1.1em;
+    text-align: center;
+    top: 14%;
+    right: 5%;
+}

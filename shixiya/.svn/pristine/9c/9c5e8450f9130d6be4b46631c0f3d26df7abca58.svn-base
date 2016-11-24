@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--IE8兼容-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" /><!--禁止缩放-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">  <!--手机满屏变大-->
+    <meta name="format-detection" content="telephone=no"> <!--去掉手机强制某些数值识别成链接-->
+    <title>查看答案</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/person.css">
+    <style>
+        body{background-color: #e8e8e8}
+        table{width: 100%;margin-top: 15px;margin-bottom: 20px}
+        table tr{width: 100%;display: block;background-color: snow;box-shadow: 2px 2px 4px #9f9f9f;margin-bottom: 20px}
+        table td{padding:5px}
+        table td:first-child{width: 10%}
+        table td:last-child{width: 90%;position: relative}
+        .img-show{width: 50px;height: 50px;border-radius: 25px;overflow: hidden;background-color: #c3c4c4;margin: 0 auto;float: none}
+        .txt-show{float: left;width: 71%;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;}
+        .s-title{color: #3879D9;font-weight: bold}
+        .xs-title{font-size: 0.7em;margin:7px 0 4px 0;line-height: 1.3em}
+        input[type="checkbox"]{width: 20px;height: 20px;}
+        .txt-n{line-height: 1.3em;font-size: 0.7em; letter-spacing: 0.08em; margin-top: 1px; color: #808080;}
+        input[type="submit"]{width: 60%;margin: auto;background-color: #3879D9;display: block;font-size: 18px;line-height: 35px;border-radius: 5px;color: #ffffff}
+        .nickname{font-size: 0.7em;}
+        .img{width: 26%;word-wrap:break-word;float: right;margin-right: 1%;text-align: center}
+        .dn{position: absolute;bottom: -16px;right: 25%;height: 20px;width: 20px}
+    </style>
+</head>
+<body>
+    <form>
+        <table cellspacing="0">
+            <tr>
+                <td><input type="checkbox" name="choose"></td>
+                <td>
+                    <div class="txt-show">
+                        <p class="s-title">问题：大标题</p>
+                        <p class="xs-title">1、问题问题问题问题问题问题问题</p>
+                        <p class="txt-n">问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案</p>
+                        <p class="xs-title">2、问题问题问题问题问题问题问题</p>
+                        <p class="txt-n">问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案</p>
+                    </div>
+                    <div class="img">
+                        <div class="img-show"><img src=""></div>
+                        <p class="nickname">nickname</p>
+                    </div>
+                    <img src="../../images/tuwen/dn.png" class="dn">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="choose"></td>
+                <td>
+                    <div class="txt-show">
+                        <p class="s-title">问题：大标题</p>
+                        <p class="xs-title">1、问题问题问题问题问题问题问题</p>
+                        <p class="txt-n">问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案问题1答案</p>
+                    </div>
+                    <div class="img">
+                        <div class="img-show"><img src=""></div>
+                        <p class="nickname">nickname</p>
+                    </div>
+                    <img src="../../images/tuwen/dn.png" class="dn">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="提&nbsp;&nbsp;交">
+    </form>
+    <script src="../../js/jquery-1.11.2.js"></script>
+    <script>
+        $(window).load(function(){
+            showCtn();
+        });
+        function showCtn(){
+            var dn=$(".dn");
+            var txt=$(".txt-show");
+            for(var i=0;i<dn.length;i++){
+                $(dn[i]).click(function(){
+                    var j=i;
+                    return function(){
+                        if($(txt[j]).css("height")=="62px"){
+                            $(txt[j]).css("height","auto");
+                        }else{
+                            $(txt[j]).css("height","62px");
+                        }
+                    }
+                }())
+            }
+        }
+    </script>
+</body>
+</html>

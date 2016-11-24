@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" extends="father" namespace="/">
+		
+		<action name="addAdmin"
+			class="com.ehighsun.shixiya.administer.action.AddAdminAction">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="admin_*"
+			class="com.ehighsun.shixiya.administer.action.AdminAction" method="{1}">
+			<result name="showAdmin" type="chain">enterAdminMain</result>
+			<result name="addAdmin" type="redirectAction">/admin/admin_showAdmin</result>
+			<result name="deleteAdmin" type="chain">admin_showAdmin</result>
+			<result name="deleteAdmins" type="chain">admin_showAdmin</result>
+			<result name="findAdminByMap" type="chain">enterAdminMain</result>
+		</action>
+
+		<action name="adminStudent_*"
+			class="com.ehighsun.shixiya.administer.action.AdminStudentAction"
+			method="{1}">
+			<result name="showStudent" type="chain">enterAdminMain</result>
+			<result name="deleteStudent" type="chain">adminStudent_showStudent
+			</result>
+			<result name="deleteStudents" type="chain">adminStudent_showStudent
+			</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+			<result name="loginTest" type="redirect">toBBS_toBBS</result>
+		</action>
+		<action name="adminLable_*"
+			class="com.ehighsun.shixiya.administer.action.AdminLableAction"
+			method="{1}">
+			<result name="showLable" type="chain">enterAdminMain</result>
+			<result name="addLable" type="chain">adminLable_showLable
+			</result>
+			<result name="deleteLable" type="chain">adminLable_showLable
+			</result>
+			<result name="deleteLables" type="chain">adminLable_showLable
+			</result>
+			<result name="findByName" type="chain">enterAdminMain</result>
+		</action>
+		<action name="adminResume_*"
+			class="com.ehighsun.shixiya.administer.action.ResumeAction"
+			method="{1}">
+			<result name="showResume" type="chain">enterAdminMain</result>
+			<result name="deleteResume" type="chain">adminResume_showResume
+			</result>
+			<result name="deleteResumes" type="chain">adminResume_showResume
+			</result>
+			<result name="findByName" type="chain">enterAdminMain</result>
+		</action>
+	</package>
+</struts>

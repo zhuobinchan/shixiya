@@ -1,0 +1,32 @@
+.tuwen-lis li{position: relative;padding: 5px;margin: 7px;border: 1px solid #004e92;}
+.s-title{color: #004e92!important;}
+.txt2{color: #000!important;}
+.triangle{
+    position: absolute;
+    top: 0;right: 0;
+    width:0;
+    height:0;
+    border-top:35px solid #004e92;
+    border-left: 56px solid transparent;
+}
+.triangle>i{position: absolute;top: -44px;right: -5px;width: 30px;height: 30px;}
+.hot{background: url("/shixiya/omg/images/tuwen/hot.png")0 0/100% 100% no-repeat}
+.fire{background: url("/shixiya/omg/images/tuwen/recommend.png")0 0/100% 100% no-repeat}
+.swiper-pagination{height: 25px}
+@media screen and (min-width: 450px){
+    .swiper2,.swiper-container2,.swiper-container2 img{
+        height: 300px!important;
+    }
+    .video-container{
+        width: 184px;height: 234px;margin: 1px;
+    }
+}
+
+/*=======hr周点评========*/
+.up-intro{position: absolute;top: 0;right: 0;z-index: 101;height: 100%;width: 50%;overflow: scroll;padding: 0 5px 0 10px;color: #ffffff;background: rgba(0,0,0,.6)}
+.up-intro>h3{line-height: 35px;font-size: 16px;text-align: center;font-weight: 200}
+.up-intro>p{margin-bottom: 10px;line-height: 20px;font-size: 13px}
+.swiper-flow .swiper-slide{position:relative;margin-top: 20px;margin-bottom: 60px}
+.cover-txt{position: absolute;bottom: 0;width: 96%;height: 70px;padding: 2%;color: #ffffff;background: rgba(0,0,0,.5)}
+.cover-txt h3{font-size: 15px;font-weight: 200}
+.cover-txt p{font-size: 12px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}

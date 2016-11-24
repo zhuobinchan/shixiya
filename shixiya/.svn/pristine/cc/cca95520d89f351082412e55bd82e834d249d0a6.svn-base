@@ -1,0 +1,281 @@
+package com.ehighsun.shixiya.administer.action;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+import com.ehighsun.shixiya.commonality.action.BaseAction;
+import com.ehighsun.shixiya.pojo.PageBean;
+import com.ehighsun.shixiya.pojo.PreferSelectImgs;
+import com.ehighsun.shixiya.pojo.PreferenceSelect;
+import com.ehighsun.shixiya.service.PreferSelectImgsService;
+import com.ehighsun.shixiya.service.PreferenceSelectService;
+import com.ehighsun.shixiya.util.PageUtil;
+import com.ehighsun.shixiya.util.ResponseUtil;
+import com.ehighsun.shixiya.util.StringUtil;
+
+public class AdminPreferSelectImgAction extends BaseAction<PreferSelectImgs> {
+
+	private File imgUrl;
+	private String imgUrlContentType;
+	private String imgUrlFileName;
+
+	private String page;
+	private String ids;
+
+	private Integer psId;
+
+	private List<PreferSelectImgs> list;
+	private List<PreferenceSelect> selectlist;
+
+	@Resource(name = "preferSelectImgsServiceImpl")
+	private PreferSelectImgsService preferSelectImgsService;
+
+	@Resource(name = "preferenceSelectServiceImpl")
+	private PreferenceSelectService preferenceSelectService;
+
+	public String showImgs() {
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("mainPage", "PreferSelectImg.jsp");
+
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 6);
+		list = preferSelectImgsService.findImgs("from PreferSelectImgs", null,
+				pageBean);
+		Long count = preferSelectImgsService
+				.countImgs("select count(*) from PreferSelectImgs");
+		String pageCode = PageUtil.genPagination(request.getContextPath()
+				+ "/admin/pImgs_showImgs.action", count,
+				Integer.parseInt(page), 6, null);
+		selectlist = preferenceSelectService.findAllPreferenceSelect();
+		System.out.println(selectlist.size() + "///////");
+
+		return "showImgs";
+	}
+
+	public String addImgs() {
+
+		System.out.println("//////;;;;;;;");
+		HttpServletRequest request = ServletActionContext.getRequest();
+
+		if (imgUrl != null) {
+			String houzhui = imgUrlFileName.substring(imgUrlFileName
+					.indexOf('.'));
+			String randomDir = this.generateRandomDir(UUID.randomUUID()
+					.toString());
+			String path = request.getSession().getServletContext()
+					.getRealPath("/images/" + randomDir);
+			String saveName = UUID.randomUUID().toString();
+			String savePath = "images/" + randomDir + "/" + saveName + houzhui;
+			File file = new File(path, saveName + houzhui);
+			try {
+				path = file.getCanonicalPath();
+				FileUtils.copyFile(imgUrl, file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			model.setUrl(savePath);
+		}
+
+		preferSelectImgsService.addImg(model);
+
+		return "addImgs";
+	}
+
+	public String deleteImg() {
+
+		preferSelectImgsService.deletePreferSelectImg(model.getId());
+		JSONObject result = new JSONObject();
+		result.put("success", true);
+		try {
+			ResponseUtil.write(ServletActionContext.getResponse(), result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "deleteImg";
+	}
+
+	public String deleteImgs() {
+
+		String[] str = ids.split(",");
+		preferSelectImgsService.deletePreferSelectImgs(str);
+		JSONObject result = new JSONObject();
+		result.put("success", true);
+		try {
+			ResponseUtil.write(ServletActionContext.getResponse(), result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "deleteImgs";
+	}
+
+	public String findByStatus() {
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("mainPage", "PreferSelectImg.jsp");
+
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		String str = null;
+		if (psId != null) {
+			PreferenceSelect select = new PreferenceSelect();
+			select.setId(psId);
+			map.put("preferenceSelect", select);
+			str = "psId=" + psId;
+		}
+
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 6);
+		list = preferSelectImgsService.findPageByMap("from PreferSelectImgs",
+				map, pageBean);
+		Long count = preferSelectImgsService.countAdvs(
+				"select count(*) from PreferSelectImgs", map);
+		String pageCode = PageUtil.genPagination(request.getContextPath()
+				+ "/admin/pImgs_findByStatus.action" + str, count,
+				Integer.parseInt(page), 6, null);
+		selectlist = preferenceSelectService.findAllPreferenceSelect();
+
+		return "findByStatus";
+	}
+
+	public String updateImg() {
+
+		PreferSelectImgs imgs = preferSelectImgsService
+				.findPreferSelectImgsById(model.getId());
+		if (imgUrl != null) {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			if (imgs != null) {
+				if (StringUtil.isNotEmpty(imgs.getUrl())) {
+
+					String path = request.getSession().getServletContext()
+							.getRealPath("/");
+					File file = new File(path, imgs.getUrl());
+					file.delete();
+				}
+			}
+			String houzhui = imgUrlFileName.substring(imgUrlFileName
+					.indexOf('.'));
+			String randomDir = this.generateRandomDir(UUID.randomUUID()
+					.toString());
+			String path = request.getSession().getServletContext()
+					.getRealPath("/images/" + randomDir);
+			String saveName = UUID.randomUUID().toString();
+			String savePath = "images/" + randomDir + "/" + saveName + houzhui;
+			File file = new File(path, saveName + houzhui);
+			try {
+				path = file.getCanonicalPath();
+				FileUtils.copyFile(imgUrl, file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			model.setUrl(savePath);
+
+		} else {
+			if (imgs != null) {
+				if (StringUtil.isNotEmpty(imgs.getUrl())) {
+					model.setUrl(imgs.getUrl());
+				}
+			}
+			model.setUrl(imgs.getUrl());
+		}
+		preferSelectImgsService.updateImgs(model);
+		return "updateImg";
+	}
+
+	public String generateRandomDir(String uuidFileName) {
+		// 获得唯一文件名的hashcode
+		int hashcode = uuidFileName.hashCode();
+		// 获得一级目录
+		int d1 = hashcode & 0xf;
+		// 获得二级目录
+		int d2 = (hashcode >>> 4) & 0xf;
+
+		return d2 + "/" + d1;// 共有256目录l
+	}
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public File getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(File imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getImgUrlContentType() {
+		return imgUrlContentType;
+	}
+
+	public void setImgUrlContentType(String imgUrlContentType) {
+		this.imgUrlContentType = imgUrlContentType;
+	}
+
+	public String getImgUrlFileName() {
+		return imgUrlFileName;
+	}
+
+	public void setImgUrlFileName(String imgUrlFileName) {
+		this.imgUrlFileName = imgUrlFileName;
+	}
+
+	public List<PreferSelectImgs> getList() {
+		return list;
+	}
+
+	public void setList(List<PreferSelectImgs> list) {
+		this.list = list;
+	}
+
+	public List<PreferenceSelect> getSelectlist() {
+		return selectlist;
+	}
+
+	public void setSelectlist(List<PreferenceSelect> selectlist) {
+		this.selectlist = selectlist;
+	}
+
+	public Integer getPsId() {
+		return psId;
+	}
+
+	public void setPsId(Integer psId) {
+		this.psId = psId;
+	}
+
+}

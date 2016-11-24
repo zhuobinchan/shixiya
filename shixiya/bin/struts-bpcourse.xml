@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="bpcourse" extends="father" namespace="/">
+		<action name="adminTeacher_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductTeacherAction"
+			method="{1}">
+			<result name="showSuccess" type="chain">enterAdminMain</result>
+			<result name="addBTeacher" type="redirectAction">/admin/adminTeacher_showAddTeacher
+			</result>
+			<result name="deleteBTeacher" type="chain">adminTeacher_showAddTeacher
+			</result>
+			<result name="deleteTeachers" type="chain">adminTeacher_showAddTeacher
+			</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+		
+		<action name="adminCourse_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductCourseAction"
+			method="{1}">
+			<result name="showCourse" type="chain">enterAdminMain</result>
+			<result name="addCourseSuccess" type="redirectAction">/admin/adminCourse_showCourse
+			</result>
+			<result name="deleteCourse" type="chain">adminCourse_showCourse
+			</result>
+			<result name="deleteCourses" type="chain">adminCourse_showCourse
+			</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+
+		<action name="adminChapter_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductChapterAction"
+			method="{1}">
+			<result name="showChapter" type="chain">enterAdminMain</result>
+			<result name="addChapter" type="redirectAction">/admin/adminChapter_showChapter
+			</result>
+			<result name="deleteChapter" type="chain">adminChapter_showChapter
+			</result>
+			<result name="deleteCourses" type="chain">adminCourse_showCourse
+			</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+		<action name="adminVideo_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductVideoAction"
+			method="{1}">
+			<result name="showVideo" type="chain">enterAdminMain</result>
+			<result name="addVideo" type="redirectAction">/admin/adminVideo_showVideo
+			</result>
+			<result name="deleteVideo" type="chain">adminVideo_showVideo</result>
+			<result name="deleteVideos" type="chain">adminVideo_showVideo</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+
+		<action name="adminAdv_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductAdvertisement"
+			method="{1}">
+			<result name="showAdv" type="chain">enterAdminMain</result>
+			<result name="addAdv" type="redirectAction">/admin/adminAdv_showAdv</result>
+			<result name="deleteAdv" type="chain">adminAdv_showAdv</result>
+			<result name="deleteAdvs" type="chain">adminAdv_showAdv</result>
+			<result name="findByStatus" type="chain">enterAdminMain</result>
+			<result name="updateAdv" type="chain">adminAdv_showAdv</result>
+		</action>
+		
+		<action name="bComment_*"
+			class="com.ehighsun.shixiya.administer.action.AdminBProductComment"
+			method="{1}">
+			<result name="showComment" type="chain">enterAdminMain</result>
+			<result name="deleteComment" type="chain">bComment_showComment
+			</result>
+			<result name="deleteComments" type="chain">bComment_showComment
+			</result>
+			<result name="findCommentByCondition" type="chain">enterAdminMain</result>
+		</action>
+		
+		
+		<!-- b产品 导师端登陆 -->
+		<action name="*_BPTeacherLoginAction"
+			class="com.ehighsun.shixiya.teacher.action.BPTeacherLoginAction"
+			method="{1}">
+			<result name="teacherLogin" type="redirectAction">/OMG_login/html/login/getCourseByTeacher_BPTeacherAction
+			</result>
+			<result name="error">/OMG_login/html/login/guiderLogin.jsp</result>
+		</action>
+		<!-- b产品 导师端课程显示 -->
+		<action name="*_BPTeacherAction"
+			class="com.ehighsun.shixiya.teacher.action.BPTeacherAction" method="{1}">
+			<result name="getCourseByTeacher">/OMG_login/html/login/guiderList.jsp
+			</result>
+			<result name="getCourseById">/OMG_login/html/login/childWeb2.jsp
+			</result>
+			<result name="error">/OMG_login/html/login/guiderLogin.jsp</result>
+		</action>
+	</package>
+</struts>

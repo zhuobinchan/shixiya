@@ -1,0 +1,302 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 微软雅黑;
+}
+button{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+.speech-title{
+    font-size: 15px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #ffffff;
+}
+/*===== 视频播放 =====*/
+.video{
+    position: relative;
+    width: 100%;
+    height: 30%;
+    z-index: 200;
+    padding: 3vh 0;
+    background-color: #000;
+}
+.chatroom{
+    position: relative;
+    width: 100%;
+    height: 64%;
+}
+.chat{
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.chat-container{
+    width: 100%;
+    height: auto;
+   /*  min-height: 100%; */
+    overflow: auto;
+    padding-bottom: 85px;
+}
+.ly{
+    position: fixed;
+    left: 35%;
+    top: 55%;
+    z-index: 200;
+    width: 33vw;
+    height: 33vw;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: 微软雅黑;
+    font-size: 12px;
+    background-color: rgba(0,0,0,.5);
+    color: #ffffff;
+}
+.ly>img{height: 80%;width: auto}
+.ly>p{line-height: 6vw}
+#alert{
+    position: fixed;
+    left: 20%;
+    bottom: 10%;
+    z-index: 200;
+    width: 60%;
+    text-align: center;
+    background-color: rgba(106,106,106,.8);
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-family: 微软雅黑;
+    font-size: 0.9em;
+    border-radius: 3px;
+}
+
+/*====== 右边聊天信息 ======*/
+.chat-content{
+    z-index: 100;
+    width: 96%;
+    float: right;
+    margin: 10px 2%;
+}
+.head1{
+    float: right;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.content{
+    position: relative;
+    float: right;
+    margin-right: 5px;
+    max-width: 65%;
+    word-wrap:break-word;
+}
+.ni-name{
+    position: absolute;
+    right: 10px;
+    width: 190px;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 0.8em;
+    color: #6c6c6c;
+}
+.word3{
+    margin: 18px 9px 0 0 ;
+    padding: 6px 10px;
+    line-height: 25px;
+    font-size: 0.9em;
+    border: 1px solid #0094ca;
+    border-radius: 5px;
+    color: #ffffff;
+    background: #02a7e3;
+}
+.r-img13{               /*右箭头*/
+    position: absolute;
+    right: 4px;
+    top: 30px;
+    width: 6px;
+    height: 12px;
+    background: url("/shixiya/omg/images/video/yy-yjt.png");
+    background-size: 100% 100%;
+}
+
+/*====== 左边聊天信息 ======*/
+/*.chat-content2{*/
+/*width: 100%;*/
+/*float: left;*/
+/*margin: 10px;*/
+/*}*/
+.head2{
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.content2{
+    position: relative;
+    float: left;
+    margin-left: 5px;
+    max-width: 65%;
+    word-wrap:break-word;
+}
+.ni-name2{
+    position: absolute;
+    left: 10px;
+    width: 190px;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 0.8em;
+    color: #6c6c6c;
+}
+.word4{
+    margin: 18px 0 0 9px ;
+    padding:6px 10px;
+    line-height: 25px;
+    font-size: 0.9em;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    background: #ffffff;
+}
+.r-img14{               /*左箭头*/
+    position: absolute;
+    left: 4px;
+    top: 30px;
+    width: 6px;
+    height: 12px;
+    background: url("/shixiya/omg/images/video/yy-zjt.png");
+    background-size: 100% 100%;
+}
+.yy{
+    position: relative;
+    margin-top: 18px;
+    margin-right: 9px;
+    height: 35px;
+    width: 81px;
+    border-radius: 5px;
+    background: #02a7e3 url("../images/video/yy-y.png") no-repeat right center/auto 100%;
+}
+.yy:active{
+    background: #7ac4df url("../images/video/yy-y.png") no-repeat right center/auto 100%;
+}
+.yy2{
+    position: relative;
+    margin-top: 18px;
+    margin-left: 9px;
+    height: 35px;
+    width: 81px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background: #fff url("../images/video/yy-z.png") no-repeat left center/auto 100%;
+}
+.yy2:active{
+    background: #dddddd url("../images/video/yy-z.png") no-repeat left center/auto 100%;
+}
+.weidu{
+    position: absolute;
+    right: -33px;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    background: url("/shixiya/omg/images/video/weidu.png");
+    background-size: 100% 100%;
+}
+.scd{
+    line-height: 32px;
+    font-size: 12px;
+    color: #6c6c6c;
+}
+.scd1{
+    margin-left: -20px;
+}
+.scd2{
+    float: right;
+    margin-right: -21px;
+}
+.input-std{
+    left: 2%;
+    width: 76%!important;
+}
+.send-img{
+    width: auto;
+    height: 120px;
+    max-width: 92%;
+    overflow: hidden;
+    padding:3px;
+}
+.send-img-right{
+    margin: 18px 9px 0 0 ;
+    border: 1px solid #0094ca;
+    border-radius: 5px;
+    background: #02a7e3;
+}
+.send-img-left{
+    margin: 18px 0 0 9px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    background: #ffffff;
+}
+.send-img img{
+    width: auto;
+    height: 100%;
+    max-width: 99%;
+    border-radius: 5px;
+}
+.hr{
+    display: inline-block;
+    margin: 0 6px;
+    height: 12px;
+    width: 23px;
+    background: url("/shixiya/omg/images/video/HR.png") no-repeat;
+    background-size: 100% 100%;
+}
+.js{
+    display: inline-block;
+    margin: 0 6px;
+    height: 12px;
+    width: 23px;
+    background: url("/shixiya/omg/images/video/TC.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+
+/*=========发送框==========*/
+.send{position: absolute;bottom: 0;z-index: 200;width: 100%;height: auto;background-color: #ecedf1;}
+.send1{width: 100%;height: 39px}
+.send2{width: 100%;height: 41px}
+.send-word{height: 100%;}
+.input-word{position: absolute;top: 5px;left: 3%;height: 30px;width: 75%;padding-left: 1%;border: none;border-radius: 5px;font-size: 0.92em;overflow-y: auto;overflow-x: hidden;background-color: #ffffff;}
+.input-word::-webkit-scrollbar{width: 0;}
+.input-word>img,.word3>img,.word4>img{vertical-align: sub}
+.ft{position: absolute;right: 5%;top: 6px;width: 36px;height: 36px;background: url("/shixiya/omg/images/video/ft.png") no-repeat;background-size: 100% 100%;}
+.hide{display: none;}
+.btn-container{position: absolute;top: 5px;right: 3%;height: 30px;line-height: 30px;width: 15%;border-radius: 5px;font-size: 0.9em;text-align: center;color: #ffffff;background-color: #dddee2}
+.btn-std{position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: none;border-radius: 5px;font-weight: 800;background: #02a7e3;color: #ffffff;}
+.send-sound{position: absolute;top: 5px;left: 5%;width: 90%;height: 30px;font-size: 1.0em;text-align: center;
+    border: 1px solid #dddddd; border-radius: 4px;background-color: #ffffff;}
+.send2>div{float: left;width: 25%;height: 100%}
+.voice{width: 21px;height: 25px;margin:8px auto;background: url("/shixiya/omg/images/video/voice.png");background-size: 100% 100%}
+.play{width: 25px;height: 25px;margin:8px auto;background: url("/shixiya/omg/images/video/play.png");background-size: 100% 100%}
+.quiet{width: 29px;height: 25px;margin:8px auto;background: url("/shixiya/omg/images/video/quiet.png");background-size: 100% 100%}
+.noise{width: 29px;height: 25px;margin:8px auto;background: url("/shixiya/omg/images/video/noise.png");background-size: 100% 100%}
+.photo{width: 25px;height: 25px;margin:8px auto;background: url("/shixiya/omg/images/video/photo.png");background-size: 100% 100%}
+
+.history{line-height: 24px;width: 92px;margin: auto;font-size: 12px;color: #075090;}
+.history-icon{float: left;margin: 6px 2px;width: 12px;height: 12px;background: url("/shixiya/omg/images/video/history.png") 0 0/100% 100% no-repeat}
+
+.tempContainer {position:fixed;top: 0; width:100%;height: 100%; text-align:center; z-index:201;background-color: #000}

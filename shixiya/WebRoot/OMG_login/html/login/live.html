@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--IE8兼容-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" /><!--禁止缩放-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">  <!--手机满屏变大-->
+    <meta name="format-detection" content="telephone=no"> <!--去掉手机强制某些数值识别成链接-->
+    <title>直播间</title>
+    <link rel="stylesheet" href="../../css/chat.css"/>
+    <script src="../../js/jquery-1.11.2.js"></script>
+</head>
+<body>
+    <div class="chat">
+        <div class="ly" style="display: none">
+            <img src="../../images/ly.png">
+        </div>
+        <p id="alert"></p>
+        <!--右边聊天信息-->
+        <div class="chat-content">
+            <img src="../../images/head-img.png" class="head1">
+            <div class="content">
+                <p class="ni-name">1234</p>
+                <div class="word">聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容</div>
+            </div>
+        </div>
+        <!--左边聊天信息-->
+        <div class="chat-content" id="chat-l">
+            <img src="../../images/head-img.png" class="head2">
+            <div class="content2">
+                <p class="ni-name2">1234</p>
+                <div class="word2">聊天内容</div>
+            </div>
+        </div>
+    </div>
+    <div class="send">
+        <img src="../../images/sound.png">
+        <div class="send-word">
+            <input type="text" class="input-word"/>
+            <button class="btn-send">发送</button>
+        </div>
+        <button class="send-sound" style="display: none">点击开始录音</button>
+    </div>
+    <script src="../../js/video/video.js"></script>
+</body>
+</html>

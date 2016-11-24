@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="app_preset_prof_preset_name">TagerHtmlQianChengWuYou Launch Configuration</entry>
+<entry key="app_preset_prof_preset_filter_s"/>
+<entry key="app_preset_prof_preset_filter_p">action.*,
+com.dayee.wintalent.service.v8.*,
+com.ehighsun.BBS.Listener.*,
+com.ehighsun.BBS.MyTimerTask.*,
+com.ehighsun.BBS.filter.*,
+com.ehighsun.shixiya.BBS.action.*,
+com.ehighsun.shixiya.Business.action.*,
+com.ehighsun.shixiya.Interceptor.*,
+com.ehighsun.shixiya.Login.action.*,
+com.ehighsun.shixiya.ShowWorld.*,
+com.ehighsun.shixiya.administer.action.*,
+com.ehighsun.shixiya.commonality.action.*,
+com.ehighsun.shixiya.dao.*,
+com.ehighsun.shixiya.hr.action.*,
+com.ehighsun.shixiya.pojo.*,
+com.ehighsun.shixiya.preferenceselect.action.*,
+com.ehighsun.shixiya.service.*,
+com.ehighsun.shixiya.student.action.*,
+com.ehighsun.shixiya.teacher.action.*,
+com.ehighsun.shixiya.test.*,
+com.ehighsun.shixiya.thirdparty.*,
+com.ehighsun.shixiya.toBBS.action.*,
+com.ehighsun.shixiya.trainer.action.*,
+com.ehighsun.shixiya.util.*,
+com.ehighsun.shixiya.webmagic.*,
+com.ehighsun.shixiya.websocket.*,
+com.ehighsun.shixiya.weixin.action.*,
+com.ehighsun.shixiya.weixin.pojo.*,
+com.ehighsun.shixiya.weixin.quartz.*,
+com.ehighsun.shixiya.weixin.servlet.*,
+com.ehighsun.shixiya.weixin.util.*,
+jiabin.action.*,
+jiabin.dao.*,
+jiabin.entity.*,
+jiabin.interceptor.*,
+jiabin.service.*</entry>
+<entry key="app_preset_prof_preset_alloc_p">10</entry>
+<entry key="app_preset_"/>
+<entry key="app_preset_prof_preset_samplingRefreshRate_s">1000</entry>
+<entry key="app_preset_prof_preset_stacks_p">false</entry>
+<entry key="app_preset_prof_preset_roots_p">action.**
+com.dayee.wintalent.service.v8.**
+com.ehighsun.BBS.Listener.**
+com.ehighsun.BBS.MyTimerTask.**
+com.ehighsun.BBS.filter.**
+com.ehighsun.shixiya.BBS.action.**
+com.ehighsun.shixiya.Business.action.**
+com.ehighsun.shixiya.Interceptor.**
+com.ehighsun.shixiya.Login.action.**
+com.ehighsun.shixiya.ShowWorld.**
+com.ehighsun.shixiya.administer.action.**
+com.ehighsun.shixiya.commonality.action.**
+com.ehighsun.shixiya.dao.**
+com.ehighsun.shixiya.hr.action.**
+com.ehighsun.shixiya.pojo.**
+com.ehighsun.shixiya.preferenceselect.action.**
+com.ehighsun.shixiya.service.**
+com.ehighsun.shixiya.student.action.**
+com.ehighsun.shixiya.teacher.action.**
+com.ehighsun.shixiya.test.**
+com.ehighsun.shixiya.thirdparty.**
+com.ehighsun.shixiya.toBBS.action.**
+com.ehighsun.shixiya.trainer.action.**
+com.ehighsun.shixiya.util.**
+com.ehighsun.shixiya.webmagic.**
+com.ehighsun.shixiya.websocket.**
+com.ehighsun.shixiya.weixin.action.**
+com.ehighsun.shixiya.weixin.pojo.**
+com.ehighsun.shixiya.weixin.quartz.**
+com.ehighsun.shixiya.weixin.servlet.**
+com.ehighsun.shixiya.weixin.util.**
+jiabin.action.**
+jiabin.dao.**
+jiabin.entity.**
+jiabin.interceptor.**
+jiabin.service.**
+</entry>
+<entry key="profiler.settings.instrument.empty.methods">false</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">false</entry>
+<entry key="app_preset_prof_preset_samplingRate_s">100</entry>
+<entry key="app_preset_prof_preset_filterMode_s">true</entry>
+<entry key="app_preset_prof_preset_selector"/>
+<entry key="app_preset_prof_preset_refreshRate_s">1000</entry>
+<entry key="app_preset_prof_preset_runnables_p">true</entry>
+<entry key="app_preset_prof_preset_filterMode_p">false</entry>
+<entry key="app_preset_prof_preset_memoryMode_p">true</entry>
+</properties>

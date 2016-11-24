@@ -1,0 +1,22 @@
+input[type="button"], input[type="submit"], input[type="reset"],button{  -webkit-appearance: none;}
+textarea{ -webkit-appearance: none;}
+.container{width: 100%;margin-bottom: 85px}
+.per-message{width: 100%;height: 170px;background-color: #b6d8e7;text-align: center;padding-top: 30px}
+.per-message p{line-height: 1.6em}
+.head-img{width: 90px;height: 90px;border-radius: 45px;background-color: #afafb0;margin: 0 auto;overflow: hidden}
+.head-img>img{width: 100%;height: auto;}
+.per-content{width: 80%;margin: 30px auto}
+.per-content>li,.per-content>p{padding: 10px 0;border-bottom: #c3c4c4 1px solid}
+.per-content>li a{color: #000;display: block;width: 100%;height: 100%}
+
+/*====== 已报名 =====*/
+.classify{width: 270px; margin: 0 auto 10px auto}
+.classify li{float: left;width: 88px;margin: 0 1px;padding: 5px 0;text-align: center;background-color: #b6d8e7;}
+.visited{background-color: #6fb3ff !important;color: snow}
+
+/*====== 答疑 =====*/
+.container>h4{margin: 10px 5%}
+.answer-list{width: 100%;}
+.answer-list>li{width: 80%;margin: 10px auto;padding: 5px 5%;background: #d3eeff;border-radius: 8px;box-shadow: 3px 3px 3px #d6d7d7}
+.answer-list>li>textarea{width: 100%;border-radius: 3px;border: 1px solid #a1d1ff }
+#submit{width: 50%;padding: 8px 0;margin: 5px 25%;background: #a1d1ff;border-radius: 3px;border: none;}

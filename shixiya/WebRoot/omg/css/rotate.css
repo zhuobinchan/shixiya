@@ -1,0 +1,25 @@
+.swiper-container2 .swiper-slide{width: 220px!important;height: 240px!important;}
+.swiper-wrapper{margin-top: 33vw}
+.swiper-pagination{top: -34vw!important;left: 17%!important;height: 66vw!important;width: 66vw!important;border-radius: 100%;border: 2px dotted #cecece;background: url("../images/tuwen/rotate-bg.png") 0 0/100% 100% no-repeat;}
+.swiper-pagination-bullet{position: absolute;width: 8vw;height: 8vw;border: 2px solid #aaaaaa;margin: 0 15px!important;background-color: #aaaaaa;background-repeat: no-repeat;background-size: 100% 100%;}
+.swiper-pagination-bullet:first-child{bottom: 0;left: 26vw}
+.swiper-pagination-bullet:nth-child(6){top: 46vw;left: 0;transform: rotate(60deg);-webkit-transform: rotate(60deg)}
+.swiper-pagination-bullet:nth-child(5){top: 16vw;left: -2vw;transform: rotate(120deg);-webkit-transform: rotate(120deg)}
+.swiper-pagination-bullet:nth-child(4){top: 0;left: 26vw;transform: rotate(180deg);-webkit-transform: rotate(180deg)}
+.swiper-pagination-bullet:nth-child(3){top: 16vw;right: -2vw;transform: rotate(-120deg);-webkit-transform: rotate(-120deg)}
+.swiper-pagination-bullet:nth-child(2){top: 46vw;right: 0;transform: rotate(-60deg);-webkit-transform: rotate(-60deg)}
+.swiper-pagination-bullet-active{border: 1px solid #065091;background-color: #065091;}
+.swiper-pagination-bullet>p{position: absolute;bottom: -12px;margin-left: -12px;height: 12px;width: 54px;font-size: 12px;color: #aaaaaa}
+.swiper-pagination-bullet-active>p{color: #065091;}
+@media screen and (min-width: 450px){
+    .swiper-container2{width: 100%!important;height: 600px!important;}
+    .swiper-wrapper{width: 100%;height: 380px!important;}
+    .swiper-container2 .swiper-slide{width: 66%!important;height: 100%!important;}
+    .swiper-flow .swiper-slide{margin: 25px 0 0 0;}
+    .swiper-container2 img{height: 100%!important;}
+}
+
+.swiper-flow{margin-bottom:60px;height: 64vh;overflow: hidden}
+@media screen and (max-height: 568px){
+    .swiper-flow{height: 370px}
+}

@@ -1,0 +1,205 @@
+package com.ehighsun.shixiya.weixin.action;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import com.ehighsun.shixiya.dao.BaseDao;
+import com.ehighsun.shixiya.pojo.Student;
+import com.ehighsun.shixiya.util.EmojiFilterUtil;
+import com.ehighsun.shixiya.util.StringUtil;
+import com.ehighsun.shixiya.weixin.pojo.SNSUserInfo;
+import com.ehighsun.shixiya.weixin.pojo.WeixinOauth2Token;
+import com.ehighsun.shixiya.weixin.util.WeixinUtil;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class GetUserInfoAction extends ActionSupport {
+	private String code;
+	private String state;
+	private String targePage;
+	private String targePageId;
+	private String targeUrl;
+
+	@Resource(name = "baseDao")
+	private BaseDao<Student> baseDao;
+
+	Map<String, Object> session = ActionContext.getContext().getSession();
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getTargePage() {
+		return targePage;
+	}
+
+	public void setTargePage(String targePage) {
+		this.targePage = targePage;
+	}
+
+	public String getTargePageId() {
+		return targePageId;
+	}
+
+	public void setTargePageId(String targePageId) {
+		this.targePageId = targePageId;
+	}
+	
+
+	public String getTargeUrl() {
+		return targeUrl;
+	}
+
+	public void setTargeUrl(String targeUrl) {
+		this.targeUrl = targeUrl;
+	}
+
+	public String getUserInfo() {
+		System.out.println("GetUserInfoAction-targeUrl:"+targeUrl);
+		// 海印微办公
+		 String appid = "wxc7eee0d7cb088852";
+		 String appsecret = "3c77e1eacc078c66edbaa4e9026efced";
+
+		// // 服务器实习吖平台
+		// // 第三方用户唯一凭证
+//		String appid = "wx2f5016e1682b8d9f";
+//		// 第三方用户唯一凭证密匙
+//		String appsecret = "c3b693e7a32b17503e9880f1b6f1e703";
+
+		System.out.println("targePage:" + code);
+		System.out.println("targePage:" + targePage);
+
+		try {
+			session.remove("hr");
+			session.remove("bpTeacher");
+			session.remove("trainer");
+			// session.remove("student");
+			if (session.get("student") != null) {
+				return gotoTargerPage(targePage);
+			}
+		} catch (Exception e) {
+			System.out.println("清除其他残余session");
+		}
+
+		try {
+			if (StringUtil.isNotEmpty(code)) {
+				WeixinOauth2Token token = WeixinUtil.getOauth2Token(appid,
+						appsecret, code);
+
+				SNSUserInfo snsUserInfo = WeixinUtil.getSNSUserInfo(
+						token.getAccessToken(), token.getOpenId());
+
+				List<Student> students = baseDao.find(
+						"from Student where openId = ?",
+						new Object[] { snsUserInfo.getOpenId() });
+
+				Student student = students.size() == 0 ? null : students.get(0);
+
+				if (student == null) {
+
+					student = new Student();
+					student.setOpenId(snsUserInfo.getOpenId());
+					student.setHeadUrl(snsUserInfo.getHeadImgUrl());
+					student.setName(EmojiFilterUtil.filterEmoji((snsUserInfo.getNickname())));
+					student.setNickname(EmojiFilterUtil.filterEmoji(snsUserInfo.getNickname()));
+					student.setIntegral(1);
+
+				} else {
+					student.setHeadUrl(snsUserInfo.getHeadImgUrl());
+					System.out.println("name2:"+student.getNickname());
+					student.setNickname(EmojiFilterUtil.filterEmoji(snsUserInfo.getNickname()));
+				}
+				
+				baseDao.saveOrUpdate(student);
+
+				session.put("student", student);
+
+				if (targeUrl!=null) {
+					return "gotoTargetUrl";
+				}
+				
+				
+				return gotoTargerPage(targePage);
+
+			} else {
+				return ERROR;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("授权error:" + e.toString());
+			return ERROR;
+		}
+
+	}
+
+	// 要去的页面
+	private String gotoTargerPage(String targePageAndId) {
+		if (StringUtil.isEmpty(targePageAndId)) {
+			return "getUserInfo";
+		}
+		String[] targePageList = targePageAndId.split(",");
+		String targePage = targePageList[0];
+		String targePageId = null;
+		if (targePageList.length == 2) {
+			targePageId = targePageList[1];
+			setTargePageId(targePageId);
+		}
+
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("CourseProduct")) {
+			if (StringUtil.isNotEmpty(targePageId)) {
+				return "CourseProductAction";
+			}
+			return "CourseProduct";
+		}
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("BroadcastProduct")) {
+			if (StringUtil.isNotEmpty(targePageId)) {
+				return "BroadcastProductAction";
+			}
+			return "BroadcastProduct";
+		}
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("HRListProduct")) {
+
+			return "HRListProduct";
+		}
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("TrainProduct")) {
+			if (StringUtil.isNotEmpty(targePageId)) {
+				return "TrainProductAction";
+			}
+			return "TrainProduct";// 培训we课堂
+		}
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("OutBetterProduct")) {
+			if (StringUtil.isNotEmpty(targePageId)) {
+				return "OutBetterProductAction";
+			}
+			return "OutBetterProduct";// 社外优选汇
+		}
+		if (StringUtil.isNotEmpty(targePage)
+				&& targePage.equals("RecruitProduct")) {
+			return "RecruitProduct";// 广州招聘资讯
+		}
+		return "getUserInfo";
+	}
+	
+
+
+}

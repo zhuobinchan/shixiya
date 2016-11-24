@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="b主讲老师信息表" catalog="shixiya" class="Teacher">
+		<primary-key>
+			<key-column name="老师ID" property="teacher_id" />
+		</primary-key>
+		<column name="老师姓名" property="teacher_name"></column>
+		<column name="手机号码" property="teacher_telephone"></column>
+		<column name="从事职业" property="teacher_job"></column>
+		<column name="老师背景" property="teacher_background"></column>
+		<column name="联系邮箱" property="teacher_email"></column>
+		<column name="个人简介" property="teacher_individual"></column>
+	</table>
+</hibernate-reverse-engineering>

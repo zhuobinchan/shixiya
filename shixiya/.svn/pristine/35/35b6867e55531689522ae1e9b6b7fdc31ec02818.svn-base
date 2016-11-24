@@ -1,0 +1,140 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--IE8兼容-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" /><!--禁止缩放-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">  <!--手机满屏变大-->
+    <meta name="format-detection" content="telephone=no"> <!--去掉手机强制某些数值识别成链接-->
+    <meta name="keywords" content="OMG、实习吖、海印招聘">
+    <title>培训WE课堂</title>
+    <link rel="stylesheet" href="<%=path%>/omg/css/style.css">
+    <link rel="stylesheet" href="<%=path%>/omg/css/swiper.min.css">
+    <style>
+        .tb>div{width: 32%;}
+        .main{margin-top: 1px}
+        #overChild{
+        	position:fixed;
+        	display:none;
+        	
+			top:2%; 
+			left:10%; 
+			bottom: 165px;
+/* 			margin:-170px 0 0 -40%; /* 设定这个div的margin-top的负值为自身的高度的一半,margin-left的值也是自身的宽度的一半的负值.(感觉在绕口令)  */ 
+			width:80%; /* 宽为400,那么margin-top为-200px  */
+			height:435px; /*350px 高为200那么margin-left为-100px;  */
+			line-height:200px; 
+			font-size:16px; 
+			text-align:left; 
+			z-index:101; /* 浮动在最上层  */
+			
+/* 			 -webkit-touch-callout: none; */
+/*             -webkit-user-select: none; */
+/*             -khtml-user-select: none; */
+/*             -moz-user-select: none; */
+/*             -ms-user-select: none; */
+/*             user-select: none; */
+        }
+        #pew
+        {
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            line-height: 30px;
+/*             color: red; */
+/*             background: rgba(24, 203, 227, 0.19); */
+            cursor: default;
+            z-index: 105
+        }
+        .container
+        {
+        	box-shadow: 2px 4px 6px #000;
+			border:1px solid rgb(0, 184, 255); 
+			border-radius:10px;
+/*         	width: 100%; */
+            height: 75%;
+			overflow:auto; 
+        	background-color: white;
+        }
+        #sxyLogo{
+        	text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- <div class="tb"> -->
+<!--     <div class="visited2">专业技能</div> <div>通识教育</div> <div>行业分享</div> -->
+<!-- </div> -->
+<div class="main">
+	<select class="select" name=""
+			id="selectTimeQuantumFilter">
+			<option value="3650" selected>项目时长</option>
+			<option value="1">1个月内</option>
+			<option value="90">3个月内</option>
+			<option value="180">半年内</option>
+			<option value="365">1年内</option>
+			<option value="3650">超过1年</option>
+		</select> <select class="select" id="selectLableFilter">
+			<option value="" selected>项目类别</option>
+			
+		</select>
+    <div id="overChild">
+    	<div id="sxyLogo" style="margin-bottom: -5px;">
+    		<img alt="" width="85px" height="85px" src="<%=path %>/omg/images/shixiya.png">
+    	</div>
+
+        <div class="container">
+           <ul class="tuwen-lis" style="border: none" id="overChild-ul">
+   
+  			</ul>
+        </div>
+        
+       <div id="pew">
+       	<div><img alt="" width="5px" height="50px" src="<%=path %>/omg/images/shengsuo.png"></div>
+       	<div style="margin-top: -5px" id="close_btn"><img alt="" width="50px" height="50px" src="<%=path %>/omg/images/red_close_btn.png"></div>
+            
+            
+        </div>		
+        
+    </div>
+    <div class="swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <ul class="tuwen-lis" style="border: none" id="tuwen-lis">
+       
+        
+    </ul>
+    <div style="text-align: center;width: 100%" id="refleshMessage">
+			<img src="<%=path%>/omg/images/getMore.gif" style="height: 39.4px;width:33.6px ;"></div>
+</div>
+		<jsp:include page="../foot.jsp"></jsp:include>
+
+<script src="<%=path%>/omg/js/swiper.min.js"></script>
+<!-- swiper 设置 -->
+
+<script src="<%=path%>/omg/js/jquery-1.11.2.js"></script>
+
+<script>
+    $(function(){
+        var tr=$(".tb div");
+        tr.click(function(){
+            $(this).addClass("visited2").siblings("div").removeClass("visited2");
+        });
+    })
+</script>
+<script src="<%=path%>/omg/js/trainWEAjax/trainWEAjax.js"></script>
+
+</body>
+</html>

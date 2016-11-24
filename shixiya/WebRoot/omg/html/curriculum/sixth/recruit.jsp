@@ -1,0 +1,97 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--IE8兼容-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" /><!--禁止缩放-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">  <!--手机满屏变大-->
+    <meta name="format-detection" content="telephone=no"> <!--去掉手机强制某些数值识别成链接-->
+    <title>招聘岗位</title>
+    <link rel="stylesheet" href="<%=path%>/omg/css/style.css">
+    <style>
+        .require table td{min-width: 85px;}
+    </style>
+</head>
+<%
+	request.setAttribute("vEnter", "\r\n");   
+	request.setAttribute("nEnter", "<br>");
+%> 
+<body>
+<div class="main main-content" style="margin-top: 0">
+    <p class="re-name">${recruitmentInfo.name }</p>
+    <div class="basic">
+        <div>
+            <p><i class="adr-img"></i>工作地点：<span>${recruitmentInfo.address }</span></p>
+            <p><i class="dat-img"></i>发布时间：<span>${recruitmentInfo.publishTime }</span></p>
+            <p><i class="spo-img"></i>工作类型：<span>${recruitmentInfo.workType }</span></p>
+            <p><i class="mny-img"></i>工资薪酬：<span>${recruitmentInfo.salary }</span></p>
+        </div>
+    </div>
+    <div class="require">
+        <table>
+            <tr>
+                <td>招聘人数：</td>
+                <td>${recruitmentInfo.population }</td>
+            </tr>
+            <tr>
+                <td>工作描述：</td>
+                <td>${fn:replace(recruitmentInfo.introduction, vEnter, nEnter) }</td>
+            </tr>
+            <tr>
+                <td>任职要求：</td>
+                <td>${fn:replace(recruitmentInfo.demand, vEnter, nEnter) }</td>
+            </tr>
+            <tr>
+                <td>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</td>
+                <td>${fn:replace(recruitmentInfo.remark, vEnter, nEnter) }</td>
+            </tr>
+        </table>
+    </div>
+    <div class="address">
+        <div>
+            公司名称：
+            <div class="cpn-logo">
+                <img src="<%=path%>/omg/images/tuwen/cpn-logo.png">
+            </div>
+            ${recruitmentInfo.RIBussiness.name }
+            <span class="rz">认证</span>
+        </div>
+<!--         <p>公司规模：<span>${recruitmentInfo.RIBussiness.address }</span></p> -->
+        <p>公司地址：<span>${recruitmentInfo.RIBussiness.address }</span></p>
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td>公司名称：</td>-->
+                <!--<td>雄霸天下一炜集团</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>公司规模：</td>-->
+                <!--<td>157915人</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>公司地址：</td>-->
+                <!--<td>广州市富人区一炜街雄霸天下大厦VIP30楼</td>-->
+            <!--</tr>-->
+        <!--</table>-->     
+    </div>
+    <input type="hidden" value="${recruitmentInfo.id }"/>
+    
+    <c:if test='${applyStatus == "noApply" }'>
+			<button id="enter" status="noApply" onclick="window.location.href='judgeUserBaseInfo_resume?recruitId=${recruitmentInfo.id }&companyId=${recruitmentInfo.RIBussiness.id }'" class="blue-btn" >我要报名</button>   
+    </c:if>
+    
+     <c:if test='${applyStatus == "applied" }'>
+			<button id="enter" status="applied" onclick="javascript:alert('您已报名,请查看邮箱并上传您的简历。邮箱有可能给拦截到垃圾邮箱中,抱歉给你带来的不便。')" class="yellow-btn" >您已报名</button>   
+    </c:if>   
+    
+</div>
+	   <jsp:include page="../foot.jsp"></jsp:include>
+</body>
+</html>

@@ -1,0 +1,150 @@
+package com.ehighsun.shixiya.webmagic;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.management.JMException;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import com.ehighsun.shixiya.util.FileUploadUtil;
+
+import us.codecraft.webmagic.Spider;
+
+
+@Component("webMagicScheduled")
+public class WebMagicScheduled {
+	@Resource(name="updateToMysqlByWebMagicPipeline")
+	UpdateToMysqlByWebMagicPipeline updateToMysqlByWebMagicPipeline;
+	
+	@Scheduled(cron = "0 09 23 * * ?")
+	public void webmagicShixisheng() {
+		
+//		//爬取应届生
+		Spider seedUrlYingJieShengSpider = Spider.create(new SeedUrlYingJieSheng())
+				// 从"https://github.com/code4craft"开始抓
+				.addUrl("http://www.yingjiesheng.com/guangzhou-morejob-1.html")
+				// 开启5个线程抓取
+				 .addPipeline(new MyPipeline("D:\\webmagic","YingJieShengUrlTager"))
+				.thread(1);
+			
+		Spider tagerHtmlYingJieShengSpider = Spider.create(new TagerHtmlYingJieSheng())
+				// 开启5个线程抓取
+				 .addPipeline(updateToMysqlByWebMagicPipeline)
+				.thread(5);
+		// 启动爬虫
+		seedUrlYingJieShengSpider.run();
+		// 启动爬虫
+		List<String> urls = new ArrayList<>();
+		try {
+			FileReader YingJieShengUrlTager = new FileReader(
+					"D:\\webmagic\\YingJieShengUrlTager.txt");
+			BufferedReader br = new BufferedReader(YingJieShengUrlTager);
+
+			String str = null;
+
+			while ((str = br.readLine()) != null) {
+				urls.add(str);
+			}
+			br.close();
+			YingJieShengUrlTager.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tagerHtmlYingJieShengSpider.addUrl(urls.toArray(new String[urls.size()]));
+		tagerHtmlYingJieShengSpider.run();
+		if (tagerHtmlYingJieShengSpider.isExitWhenComplete()){
+			FileUploadUtil.deleteFile("D:\\webmagic\\YingJieShengUrlTager.txt");
+		}
+		
+		
+		//爬取智联招聘
+		Spider seedurlZhiLianZhaoPing = Spider.create(new SeedUrlZhiLianZhaoPing())
+				// 从"https://github.com/code4craft"开始抓
+				.addUrl("http://www.yingjiesheng.com/guangzhou-morejob-1.html")
+				// 开启1个线程抓取
+				 .addPipeline(new MyPipeline("D:\\webmagic","ZhiLianZhaoPingUrlTager"))
+				.thread(1);
+			
+		Spider tagerHtmlZhiLianZhaoPing = Spider.create(new TagerHtmlZhiLianZhaoPing())
+				// 开启5个线程抓取
+				 .addPipeline(updateToMysqlByWebMagicPipeline)
+				.thread(5);
+		// 启动爬虫
+		seedurlZhiLianZhaoPing.run();
+		// 启动爬虫
+		urls = new ArrayList<>();
+		try {
+			FileReader YingJieShengUrlTager = new FileReader(
+					"D:\\webmagic\\ZhiLianZhaoPingUrlTager.txt");
+			BufferedReader br = new BufferedReader(YingJieShengUrlTager);
+
+			String str = null;
+
+			while ((str = br.readLine()) != null) {
+				urls.add(str);
+			}
+			br.close();
+			YingJieShengUrlTager.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tagerHtmlZhiLianZhaoPing.addUrl(urls.toArray(new String[urls.size()]));
+		tagerHtmlZhiLianZhaoPing.run();
+		if (tagerHtmlZhiLianZhaoPing.isExitWhenComplete()){
+			FileUploadUtil.deleteFile("D:\\webmagic\\ZhiLianZhaoPingUrlTager.txt");
+		}
+		
+		//爬取前程无忧
+		Spider seedurlQianChengWuYou = Spider
+				.create(new SeedUrlQianChengWuYou())
+				// 从"https://github.com/code4craft"开始抓
+				.addUrl("http://www.yingjiesheng.com/guangzhou-morejob-1.html")
+				// 开启1个线程抓取
+				.addPipeline(
+						new MyPipeline("D:\\webmagic","QianChengWuYouUrlTager"))
+				.thread(1);
+
+		Spider tagerHtmlQianChengWuYou = Spider
+				.create(new TagerHtmlQianChengWuYou())
+				// 开启5个线程抓取
+				.addPipeline(updateToMysqlByWebMagicPipeline)
+				.thread(5);
+		// 启动爬虫
+		seedurlQianChengWuYou.run();
+		// 启动爬虫
+		urls = new ArrayList<>();
+		try {
+			FileReader YingJieShengUrlTager = new FileReader(
+					"D:\\webmagic\\QianChengWuYouUrlTager.txt");
+			BufferedReader br = new BufferedReader(YingJieShengUrlTager);
+
+			String str = null;
+
+			while ((str = br.readLine()) != null) {
+				urls.add(str);
+			}
+			br.close();
+			YingJieShengUrlTager.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tagerHtmlQianChengWuYou.addUrl(urls.toArray(new String[urls.size()]));
+		tagerHtmlQianChengWuYou.run();
+		if (tagerHtmlQianChengWuYou.isExitWhenComplete()) {
+			FileUploadUtil.deleteFile("D:\\webmagic\\QianChengWuYouUrlTager.txt");
+		}
+	}
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="base" extends="father" namespace="/">
+		<!-- 进入聊天获取用户信息 -->
+		<action name="*_chat"
+			class="com.ehighsun.shixiya.commonality.action.ChatAction" method="{1}">
+			<result name="enterStuHrChat">/omg/html/chatRoom/stuHrRoom.jsp</result>
+			<result name="enterCpChat">/omg/html/chatRoom/cpRoom.jsp</result>
+			<result name="enterBpChat">/omg/html/chatRoom/bpRoom.jsp</result>
+			<result name="enterWeCourseChat">/omg/html/chatRoom/weRoom.jsp</result>
+			<result name="unlawfulEnter" type="redirect">${targetUrl}</result>
+			<result name="nologin" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2f5016e1682b8d9f&amp;redirect_uri=http%3a%2f%2fsxy.000861.com%2fshixiya%2fGetUserInfoAction?targeUrl=${targetUrl}&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect</result>
+		</action>
+		<action name="*_DownloadResumeAction" class="com.ehighsun.shixiya.commonality.action.DownloadResumeAction" method="{1}">
+			<result name="downloadResume" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">stream</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="bufferSize">1024*1024</param>
+			</result>
+        </action>
+		
+		<!-- 学生端 学生能力匹配功能 -->
+		<action name="*_AbilityAction"
+			class="com.ehighsun.shixiya.student.action.AbilityAction"
+			method="{1}">
+			<result name="getProductFromLableName">/omg/html/curriculum/menu.jsp
+			</result>
+		</action>
+		
+		<!-- 查看简历 -->
+		<action name="*_CPHrCheckStudentResumeAction" class="com.ehighsun.shixiya.hr.action.CPHrCheckStudentResumeAction" method="{1}">
+			<result name="no_info">/omg/html/personal/information.jsp?isFromPersonResume=${isFromPersonResume}</result>
+			<result name="exist_info" type="redirect">searchResumeFromDayee_CPHrCheckStudentResumeAction</result>
+			<result name="exist_info_no_resume" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e2d9fc537885b56&amp;redirect_uri=http://www.hotjob.cn/wt/highsun/mobweb/login&amp;response_type=code&amp;scope=snsapi_base&amp;state=interns;;;;0/1227/100901#wechat_redirect</result>
+			<result name="exist_info_and_resume" type="redirectAction">getResumeByStudentId_CPHrCheckStudentResumeAction?studentId=${studentId}</result>
+	 	    <result name="getResumeByStudentId">/OMG_login/html/login/checkStudentResume.jsp</result>
+		</action>
+
+		<!-- hr或讲师端管理报名名单 -->
+		<action name="*_CheckApplyAction" class="com.ehighsun.shixiya.hr.action.CPHrCheckApplyAction" method="{1}">
+			<result name="findStuApply">/OMG_login/html/login/checkApply.jsp</result>
+			<result name="findBpStuApply">/OMG_login/html/login/bpCheckApply.jsp</result>
+		</action>
+	</package>
+</struts>

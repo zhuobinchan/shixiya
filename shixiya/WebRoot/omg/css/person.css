@@ -1,0 +1,43 @@
+body{background-color: #f5f5f5;}
+*{font-family: 微软雅黑;}
+input[type="button"], input[type="submit"], input[type="reset"],button{  -webkit-appearance: none;}
+textarea{ -webkit-appearance: none;}
+.container{width: 100%;margin-bottom: 85px}
+.per-message{width: 100%;height: 170px;background: url("/shixiya/omg/images/personal/bg.png");background-size: 100% 100%;text-align: center;padding-top: 30px}
+.per-message p{line-height: 30px;font-size: 16px;color: #ffffff}
+.per-message p:last-child{font-size: 12px;line-height: 12px;}
+.head-img{width: 86px;height: 86px;border: 3px solid #5d8db6;border-radius: 48px;margin: 0 auto;overflow: hidden;background-color: #484848;}
+.head-img>img{width: 100%;height: auto;}
+.per-content{margin-bottom: 12px;}
+.per-content>div{width: 100%;line-height: 50px;background: #ffffff;}
+.per-content a{display: block;color: #000;}
+.btn-bd{border-bottom: 1px solid #cccccc;}
+.per-content>p{line-height: 50px;padding-left: 15px;font-size: 14px;border-bottom: #c3c4c4 1px solid}
+.per-content>li a{color: #000;display: block;width: 100%;height: 100%}
+
+/*====== 已报名 =====*/
+.classify{width: 270px; margin: 0 auto 10px auto}
+.classify li{float: left;width: 88px;margin: 0 1px;padding: 5px 0;text-align: center;background-color: #b6d8e7;}
+.visited{background-color: #6fb3ff !important;color: snow}
+.tuwen-model>li{padding: 0 8px 0 12px;}
+.txt2-xtb{float: left;width: 11px;height: 11px;margin: 9px 2px 0 0;background: url("/shixiya/omg/images/personal/date.png");background-size: 100% 100%;}
+.txt2-xtb2{float: left;width: 11px;height: 11px;margin: 9px 2px 0 9px;background: url("/shixiya/omg/images/personal/num.png");background-size: 100% 100%;}
+.txt2-footer{float: none;text-align: left;}
+
+/*====== 答疑 =====*/
+.container>h4{margin: 10px 5%}
+.answer-list{width: 100%;}
+.answer-list>li{width: 80%;margin: 10px auto;padding: 5px 5%;background: #00518e;border-radius: 8px;box-shadow: 3px 3px 3px #d6d7d7;}
+.answer-list>li>textarea{width: 100%;border-radius: 8px; }
+#submit{width: 50%;padding: 8px 0;margin: 5px 25%;background: #00518e;border-radius: 20px;border: none;font-size: 0.95em;color: #ffffff}
+
+
+/*=========个人中心小图标========*/
+.jt{float: right;margin-top: 21px;margin-right: 15px;width: 7px;height: 11px;background: url("/shixiya/omg/images/personal/jt.png");background-size: 100% 100%}
+.xtb{float: left;width: 18px;height: 18px;margin: 16px 15px}
+.jl{background: url("/shixiya/omg/images/personal/jl.png");background-size: 100% 100%}
+.sc{background: url("/shixiya/omg/images/personal/sc.png");background-size: 100% 100%}
+.bm{background: url("/shixiya/omg/images/personal/bm.png");background-size: 100% 100%}
+.cj{background: url("/shixiya/omg/images/personal/cj.png");background-size: 100% 100%}
+.fb{background: url("/shixiya/omg/images/personal/fb.png");background-size: 100% 100%}
+.jf{background: url("/shixiya/omg/images/personal/jf.png");background-size: 100% 100%}

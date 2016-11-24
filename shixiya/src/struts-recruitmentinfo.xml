@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="recruitmentinfo" extends="father" namespace="/">
+		<action name="*_RecruitAction"
+			class="com.ehighsun.shixiya.student.action.RecruitAction"
+			method="{1}">
+			<result name="getRecruitmentsById">/omg/html/curriculum/sixth/recruit.jsp</result>
+			<result name="applyRecruitSuccess" type="chain">getRecruitmentsById_RecruitAction</result>
+			<interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="userLoginInterceptors">
+            	<param name="includeMethods">getRecruitmentsById</param>
+            </interceptor-ref>
+		</action>
+		
+		<action name="reInfo_*"
+			class="com.ehighsun.shixiya.administer.action.RecruitmentInfoAction"
+			method="{1}">
+			<result name="showRecruitmentInfo" type="chain">enterAdminMain</result>
+			<result name="findByCondition" type="chain">enterAdminMain</result>
+			<result name="input" >index.jsp</result>
+		</action>
+		
+		<action name="bussinessReInfo_*"
+			class="com.ehighsun.shixiya.Business.action.RecruitmentInfoAction"
+			method="{1}">
+			<result name="showRecruitmentInfo" type="chain">enterCompanyMain</result>
+			<result name="findByCondition" type="chain">enterCompanyMain</result>
+			<result name="addRecruitmentInfo" type="redirectAction">bussinessReInfo_showRecruitmentInfo</result>
+			<result name="updateRecruitmentInfo"  type="redirectAction">bussinessReInfo_showRecruitmentInfo</result>
+			<result name="input" >index.jsp</result>
+		</action>
+		
+		<action name="ribusiness_*"
+			class="com.ehighsun.shixiya.administer.action.AdminRIBusinessAction"
+			method="{1}">
+			<result name="showRIBussiness" type="chain">enterAdminMain</result>
+			<result name="findByCondition" type="chain">enterAdminMain</result>
+			<result name="updateRIBusiness" type="redirectAction">ribusiness_showRIBussiness</result>
+			<result name="outRIBusiness" type="redirectAction">ribusiness_showRIBussiness</result>
+			<result name="fileNull" type="redirectAction">admin/ribusiness_showRIBussiness</result>
+			<result name="downLoadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param>  	
+			</result>
+			
+		</action>
+		
+		<action name="bussinessSubmit_*"
+			class="com.ehighsun.shixiya.Business.action.RecruitResumeSubmitAction"
+			method="{1}">
+			<result name="showRecruitResumeSubmit" type="chain">enterCompanyMain</result>
+			<result name="findByCondition" type="chain">enterCompanyMain</result>
+			
+			<result name="downLoadResume" type="stream">
+				<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param>  					
+			</result>
+			
+			<result name="downLoadPersonInfo" type="stream">
+				<param name="contentType">application/octet-stream</param>  
+                <param name="contentDisposition">attachment;fileName="${fileName}"</param>  
+                <param name="inputName">fileInputStream</param>  
+                <param name="bufferSize">1024</param>  					
+			</result>	
+					
+		</action>
+		
+		<!-- 学生端 完善学生基本信息功能 -->
+		<action name="*_rsInfoAction"
+			class="com.ehighsun.shixiya.student.action.ReplenishStudentInfoAction"
+			method="{1}">
+			<result name="ReplenishStudentInfo">/omg/html/curriculum/menu.jsp
+			</result>
+		</action>
+		
+		<action name="submitResume_*"
+			class="com.ehighsun.shixiya.Business.action.SubmitResumeAction"
+			method="{1}">
+			<result name="showSubmitResume">business/submitResume.jsp</result>
+			<result name="updateSubmitResume" >business/success.jsp</result>
+			<result name="input" >index.jsp</result>
+			
+		</action>
+		
+		<action name="*_companyRegister" class="com.ehighsun.shixiya.Business.action.CompanyRegisterAction" method="{1}">
+			<result name="SaveBussiness">business/success.jsp</result>
+			<result name="UpdateBussiness" type="redirectAction">admin/ribusiness_showRIBussiness</result>
+		</action>
+	</package>
+</struts>

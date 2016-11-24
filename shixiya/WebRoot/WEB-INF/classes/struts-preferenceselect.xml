@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="preferenceselect" extends="father" namespace="/">
+		<!-- 社外优选汇 广告管理 -->
+		<action name="*_AdminPreferenceSelectAdvAction"
+			class="com.ehighsun.shixiya.administer.action.AdminPreferenceSelectAdvAction"
+			method="{1}">
+			<result name="showAdv" type="chain">enterAdminMain</result>
+			<result name="addAdv" type="redirectAction">/admin/showAdv_AdminPreferenceSelectAdvAction</result>
+			<result name="deleteAdv" type="chain">showAdv_AdminPreferenceSelectAdvAction</result>
+			<result name="deleteAdvs" type="chain">showAdv_AdminPreferenceSelectAdvAction</result>
+			<result name="findByStatus" type="chain">enterAdminMain</result>
+			<result name="updateAdv" type="chain">showAdv_AdminPreferenceSelectAdvAction</result>
+		</action>
+		
+		
+		<action name="pSelect_*"
+			class="com.ehighsun.shixiya.administer.action.AdminPreferenceSelectAction"
+			method="{1}">
+			<result name="showPrefereneceSelect" type="chain">enterAdminMain</result>
+			<result name="deletePreferenceSelect" type="redirectAction">pSelect_showPrefereneceSelect
+			</result>
+			<result name="deletePreferenceSelects" type="redirectAction">pSelect_showPrefereneceSelect
+			</result>
+			<result name="addPreferenceSelect" type="redirectAction">admin/pSelect_showPrefereneceSelect</result>
+			<result name="findCondition" type="chain">enterAdminMain</result>
+			<result name="input" >index.jsp</result>
+		</action>
+
+		<action name="psEntered_*"
+			class="com.ehighsun.shixiya.administer.action.AdminPreferenceSelectEnteredAction"
+			method="{1}">
+			<result name="showpreferenceSelectEntered" type="chain">enterAdminMain
+			</result>
+			<result name="deletePSEntered" type="redirectAction">psEntered_showpreferenceSelectEntered
+			</result>
+			<result name="deletePSEntereds" type="redirectAction">psEntered_showpreferenceSelectEntered
+			</result>
+			<result name="findByCondition" type="chain">enterAdminMain</result>
+		</action>
+		
+		<action name="pImgs_*"
+			class="com.ehighsun.shixiya.administer.action.AdminPreferSelectImgAction"
+			method="{1}">
+			<result name="showImgs" type="chain">enterAdminMain</result>
+			<result name="addImgs" type="redirectAction">admin/pImgs_showImgs</result>
+			<result name="updateImg" type="redirectAction">admin/pImgs_showImgs</result>
+			<result name="findByStatus" type="chain">enterAdminMain</result>
+		</action>
+		
+		<action name="*_PreferenceSelectAction" class="com.ehighsun.shixiya.preferenceselect.action.PreferenceSelectAction" method="{1}">
+			<result name="showDetail">/omg/html/curriculum/fifth/childWeb5.jsp</result>
+			<result name="applySuccess" type="redirectAction">showDetail_PreferenceSelectAction?id=${id}</result>
+			<result name="applyFail">/omg/html/personal/information.jsp?isFromPersonResume=from_fifth&amp;fifthId=${id}</result>
+		</action>
+	</package>
+</struts>

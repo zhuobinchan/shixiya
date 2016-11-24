@@ -1,0 +1,372 @@
+package com.ehighsun.shixiya.Business.action;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+import com.ehighsun.shixiya.commonality.action.BaseAction;
+import com.ehighsun.shixiya.pojo.Lable;
+import com.ehighsun.shixiya.pojo.PageBean;
+import com.ehighsun.shixiya.pojo.RIBussiness;
+import com.ehighsun.shixiya.pojo.RecruitmentInfo;
+import com.ehighsun.shixiya.service.LableService;
+import com.ehighsun.shixiya.service.RIBussinessService;
+import com.ehighsun.shixiya.service.RecruitmentInfoService;
+import com.ehighsun.shixiya.util.PageUtil;
+import com.ehighsun.shixiya.util.ResponseUtil;
+import com.ehighsun.shixiya.util.StringUtil;
+
+public class RecruitmentInfoAction extends BaseAction<RecruitmentInfo> {
+
+	private String page;
+	private String ids;
+	private String pageCode;
+	private List<RecruitmentInfo> list;
+	private List<RIBussiness> riList;
+	private List<Lable> lableList;
+	private List<Lable> typeLableList;
+	private String infoName;
+	private String infoType;
+
+	private File logourl;
+	private String logourlContentType;
+	private String logourlFileName;
+
+	public List<Lable> getLableList() {
+		return lableList;
+	}
+
+	public void setLableList(List<Lable> lableList) {
+		this.lableList = lableList;
+	}
+
+	public File getLogourl() {
+		return logourl;
+	}
+
+	public void setLogourl(File logourl) {
+		this.logourl = logourl;
+	}
+
+	public String getLogourlContentType() {
+		return logourlContentType;
+	}
+
+	public void setLogourlContentType(String logourlContentType) {
+		this.logourlContentType = logourlContentType;
+	}
+
+	public String getLogourlFileName() {
+		return logourlFileName;
+	}
+
+	public void setLogourlFileName(String logourlFileName) {
+		this.logourlFileName = logourlFileName;
+	}
+
+	public String getInfoName() {
+		return infoName;
+	}
+
+	public void setInfoName(String infoName) {
+		this.infoName = infoName;
+	}
+
+	public String getInfoType() {
+		return infoType;
+	}
+
+	public void setInfoType(String infoType) {
+		this.infoType = infoType;
+	}
+
+	public List<RIBussiness> getRiList() {
+		return riList;
+	}
+
+	public void setRiList(List<RIBussiness> riList) {
+		this.riList = riList;
+	}
+
+	public List<RecruitmentInfo> getList() {
+		return list;
+	}
+
+	public void setList(List<RecruitmentInfo> list) {
+		this.list = list;
+	}
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public String getPageCode() {
+		return pageCode;
+	}
+
+	public void setPageCode(String pageCode) {
+		this.pageCode = pageCode;
+	}
+
+	@Resource(name = "recruitmentInfoServiceImpl")
+	private RecruitmentInfoService recruitmentInfoService;
+	@Resource(name = "riBussinessServiceImpl")
+	private RIBussinessService riBussinessService;
+	@Resource(name = "lableService")
+	private LableService lableService;
+
+	public String showRecruitmentInfo() {
+
+		RIBussiness riBussiness = (RIBussiness) this.getSession().getAttribute(
+				"companyer");
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("mainPage", "RecruitmentInfo.jsp");
+
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 6);
+		list = recruitmentInfoService.findRecruitmentInfos(
+				"from RecruitmentInfo where RIBussiness.id = "
+						+ riBussiness.getId(), null, pageBean);
+		Long count = recruitmentInfoService
+				.countRecruitmentInfo("select count(*) from RecruitmentInfo where RIBussiness.id = "
+						+ riBussiness.getId());
+		riList = riBussinessService.findRiBussinesses();
+		
+		/*岗位类型分类*/
+		lableList = lableService.findLablesByType(2);
+		/*招聘类型，例如：实习生、全职*/
+		typeLableList = lableService.findLablesByType(3);
+		
+		pageCode = PageUtil.genPagination(request.getContextPath()
+				+ "/admin/bussinessReInfo_showRecruitmentInfo.action", count,
+				Integer.parseInt(page), 6, null);
+
+		return "showRecruitmentInfo";
+	}
+
+	public String addRecruitmentInfo() {
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		RIBussiness riBussiness = (RIBussiness) this.getSession().getAttribute(
+				"companyer");
+		if (riBussiness != null) {
+			model.setRIBussiness(riBussiness);
+		}
+		
+		model.setLogoUrl(riBussiness.getLogoUrl());
+		System.out.println(logourl + "????");
+//		if (logourl != null) {
+//			String houzhui = logourlFileName.substring(logourlFileName
+//					.indexOf('.'));
+//			String randomDir = this.generateRandomDir(UUID.randomUUID()
+//					.toString());
+//			String path = request.getSession().getServletContext()
+//					.getRealPath("/images/" + randomDir);
+//			String saveName = UUID.randomUUID().toString();
+//			String savePath = "images/" + randomDir + "/" + saveName + houzhui;
+//			System.out.println(savePath + "////");
+//			File file = new File(path, saveName + houzhui);
+//			try {
+//				path = file.getCanonicalPath();
+//				FileUtils.copyFile(logourl, file);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			model.setLogoUrl(savePath);
+//		}
+		model.setStopState(0);
+		model.setCheckState(0);
+		model.setTopState(0);
+
+		recruitmentInfoService.addRecruitmentInfo(model);
+		return "addRecruitmentInfo";
+	}
+
+	public String deleteRecruitmentInfo() {
+
+		recruitmentInfoService.deleteRecruitmentInfo(model.getId());
+		JSONObject result = new JSONObject();
+		result.put("success", true);
+		try {
+			ResponseUtil.write(ServletActionContext.getResponse(), result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String deleteRecruitmentInfos() {
+
+		recruitmentInfoService.deleteRecruitmentInfos(ids.split(","));
+		JSONObject result = new JSONObject();
+		result.put("success", true);
+		try {
+			ResponseUtil.write(ServletActionContext.getResponse(), result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String updateRecruitmentInfo() {
+
+		RIBussiness riBussiness = (RIBussiness) this.getSession().getAttribute(
+				"companyer");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String path = request.getSession().getServletContext().getRealPath("/");
+		RecruitmentInfo info = recruitmentInfoService
+				.getRecruitmentInfoById(model.getId());
+		
+		model.setLogoUrl(riBussiness.getLogoUrl());
+//		if (logourl != null) {
+//
+//			if (info != null) {
+//				if (StringUtil.isNotEmpty(info.getLogoUrl())) {
+//					File file = new File(path, info.getLogoUrl());
+//					file.delete();
+//				}
+//				String houzhui = logourlFileName.substring(logourlFileName
+//						.indexOf('.'));
+//				String randomDir = this.generateRandomDir(UUID.randomUUID()
+//						.toString());
+//				String path1 = request.getSession().getServletContext()
+//						.getRealPath("/images/" + randomDir);
+//				String saveName = UUID.randomUUID().toString();
+//				String savePath = "images/" + randomDir + "/" + saveName
+//						+ houzhui;
+//				File file = new File(path1, saveName + houzhui);
+//				try {
+//					FileUtils.copyFile(logourl, file);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				model.setLogoUrl(savePath);
+//			}
+//			model.setRIBussiness(riBussiness);
+//			model.setTopState(info.getTopState());
+//			model.setCheckState(info.getCheckState());
+//			model.setStopState(info.getStopState());
+//			recruitmentInfoService.updateRecruitmentInfo(model);
+//		}
+
+		return "updateRecruitmentInfo";
+	}
+
+	public String changeStop() {
+
+		RecruitmentInfo info = recruitmentInfoService
+				.getRecruitmentInfoById(model.getId());
+		if (info != null) {
+
+			if (info.getStopState() == 0) {
+				info.setStopState(1);
+			} else {
+				info.setStopState(0);
+			}
+			recruitmentInfoService.updateRecruitmentInfo(info);
+		}
+		JSONObject result = new JSONObject();
+		result.put("success", true);
+		try {
+			ResponseUtil.write(ServletActionContext.getResponse(), result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String findByCondition() {
+
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("mainPage", "RecruitmentInfo.jsp");
+
+		if (StringUtil.isEmpty(page)) {
+			page = "1";
+		}
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 6);
+
+		Map<String, Object> o = new HashMap<String, Object>();
+		StringBuilder sb = new StringBuilder();
+
+		if (infoName != null && !"".equals(infoName)) {
+			o.put("name", infoName);
+			sb.append("infoName=" + infoName);
+		}
+
+		if (infoType != null && !"".equals(infoType)) {
+			o.put("workType", infoType);
+			if (sb.toString() != null) {
+				sb.append("&infoType=" + infoType);
+			} else {
+				sb.append("infoType=" + infoType);
+			}
+		}
+
+		list = recruitmentInfoService.findByCondition("from RecruitmentInfo",
+				o, pageBean);
+		Long count = recruitmentInfoService.countByCondition(
+				"select count(*) from RecruitmentInfo", o);
+
+		riList = riBussinessService.findRiBussinesses();
+
+		pageCode = PageUtil
+				.genPagination(
+						request.getContextPath()
+								+ "/admin/bussinessReInfo_findByCondition.action?"
+								+ sb.toString(), count, Integer.parseInt(page),
+						6, null);
+
+		return "findByCondition";
+	}
+
+	public String generateRandomDir(String uuidFileName) {
+		// 获得唯一文件名的hashcode
+		int hashcode = uuidFileName.hashCode();
+		// 获得一级目录
+		int d1 = hashcode & 0xf;
+		// 获得二级目录
+		int d2 = (hashcode >>> 4) & 0xf;
+
+		return d2 + "/" + d1;// 共有256目录l
+	}
+
+	public List<Lable> getTypeLableList() {
+		return typeLableList;
+	}
+
+	public void setTypeLableList(List<Lable> typeLableList) {
+		this.typeLableList = typeLableList;
+	}
+
+}

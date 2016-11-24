@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cpbroadcast" extends="father" namespace="/">
+		<!-- 获取HR数据 -->
+		<action name="*_hr"
+			class="com.ehighsun.shixiya.hr.action.GetHrIndexContentAction"
+			method="{1}">
+			<result name="getHrCommentList">/WEB-INF/hr/hrIndex.jsp</result>
+			<result name="enterHrChating">/WEB-INF/hr/hrChating.jsp</result>
+			<result name="hrAdminIndex">/admin/main.jsp</result>
+			<result name="hrCommentFilter">/admin/main.jsp</result>
+			<result name="addHrComment" type="redirectAction">/admin/hrAdminIndex_hr
+			</result>
+			<result name="updateHrComment" type="redirectAction">/admin/hrAdminIndex_hr
+			</result>
+			<result name="delHrComment" type="redirectAction">/admin/hrAdminIndex_hr
+			</result>
+		</action>
+	
+		<action name="adminCAdv_*"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductAdvAction"
+			method="{1}">
+			<result name="showAdv" type="chain">enterAdminMain</result>
+			<result name="addAdv" type="redirectAction">/admin/adminCAdv_showAdv</result>
+			<result name="deleteAdv" type="chain">adminCAdv_showAdv</result>
+			<result name="deleteAdvs" type="chain">adminCAdv_showAdv</result>
+			<result name="findByStatus" type="chain">enterAdminMain</result>
+			<result name="updateAdv" type="chain">adminCAdv_showAdv</result>
+		</action>
+		<action name="adminAnswer_*"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductAnswerAction" method="{1}">
+			<result name="showAnswer" type="chain">enterAdminMain</result>
+			<result name="deleteAnswer" type="chain">adminAnswer_showAnswer</result>
+			<result name="deleteAnswers" type="chain">adminAnswer_showAnswer</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+		
+		<action name="adminHR_*"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductHRAction"
+			method="{1}">
+			<result name="showHR" type="chain">enterAdminMain</result>
+			<result name="deleteHRs" type="chain">adminHR_showHR</result>
+			<result name="addHR" type="redirectAction">/admin/adminHR_showHR</result>
+			<result name="deleteHR" type="redirectAction">/admin/adminHR_showHR</result>
+			<result name="findByMap" type="chain">enterAdminMain</result>
+		</action>
+		
+		<!-- 管理所有直播间数据 -->
+		<action name="*_AdminCPBroadcastAction"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductBroadcastAction"
+			method="{1}">
+			<result name="getAllCPBroadcast">/admin/main.jsp</result>
+			<result name="findByName">/admin/main.jsp</result>
+			<result name="saveBroadcast" type="redirectAction">/admin/getAllCPBroadcast_AdminCPBroadcastAction</result>
+			<result name="addBroadcast" type="redirectAction">/admin/getAllCPBroadcast_AdminCPBroadcastAction</result>
+			<result name="delete">/admin/main.jsp</result>
+			<result name="deleteBroadcasts">/admin/main.jsp</result>
+		</action>
+
+		<!-- 管理所有直播间评论数据 -->
+		<action name="*_AdminCProductCommentAction"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductCommentAction"
+			method="{1}">
+			<result name="success">/admin/main.jsp</result>
+		</action>
+		<!-- 管理所有直播间评论数据 -->
+		<action name="*_AdminCProductQuestionAction"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductQuestionAction"
+			method="{1}">
+			<result name="getAllQuestion">/admin/main.jsp</result>
+			<result name="saveOrUpdateQuestion" type="redirectAction">/admin/getAllQuestion_AdminCProductQuestionAction
+			</result>
+			<result name="deleteQuestion">/admin/main.jsp</result>
+			<result name="deleteQuestionList">/admin/main.jsp</result>
+
+			<result name="findByCondition">/admin/main.jsp</result>
+		</action>
+		
+			<!-- 获取问题项列表 -->
+		<action name="*_AdminCProductQuestionListAction"
+			class="com.ehighsun.shixiya.administer.action.AdminCProductQuestionListAction"
+			method="{1}">
+			<result name="saveOrUpdateQuestionList" type="redirectAction">/admin/getAllQuestionLists_AdminCProductQuestionListAction
+			</result>
+			<result name="success">/admin/main.jsp</result>
+		</action>
+		
+		<!-- 获取HR评论数据 -->
+		<action name="*_hrComment"
+			class="com.ehighsun.shixiya.hr.action.GetHrCommentAction" method="{1}">
+			<result name="getAllHrComment">/admin/main.jsp</result>
+			<result name="hrCommentFilter">/admin/main.jsp</result>
+		</action>
+		
+		<!-- c产品 学生端 学生回答问题action -->
+		<action name="*_CPStudentQuestionAction"
+			class="com.ehighsun.shixiya.student.action.CPStudentQuestionAction"
+			method="{1}">
+			<result name="getQuestionsByStuent">/omg/html/curriculum/third/CPstudentAnswer.jsp
+			</result>
+			<result name="getAnswerByStudent">/omg/html/curriculum/menu.jsp</result>
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+		
+		
+		<!-- c产品 hr端登陆 -->
+		<action name="*_CPHrLoginAction" class="com.ehighsun.shixiya.hr.action.CPHrLoginAction"
+			method="{1}">
+			<result name="hrLogin" type="redirectAction">/OMG_login/html/login/getBroadcastsByHr_CPHrAction
+			</result>
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+		<!-- c产品 hr端boss直播间显示 -->
+		<action name="*_CPHrAction" class="com.ehighsun.shixiya.hr.action.CPHrAction"
+			method="{1}">
+			<result name="getBroadcastsByHr">/OMG_login/html/login/hrList.jsp
+			</result>
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+		
+		<!-- c产品 hr端boss直播间查看学生答案 -->
+		<action name="*_CPHrCheckAnswerAction"
+			class="com.ehighsun.shixiya.hr.action.CPHrCheckAnswerAction" method="{1}">
+			<result name="showQuestion">/OMG_login/html/login/checkStudentAnswer.jsp
+			</result>
+			<result name="employMessage">/OMG_login/html/login/employStudentInfo.jsp
+			</result>
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+		
+		<!-- c产品 hr端boss直播间面试录用记录 -->
+		<action name="*_CPHrEmployStudent" class="com.ehighsun.shixiya.hr.action.CPHrEmployStudent"
+			method="{1}">
+			<result name="saveOrUpdateEmploy">/OMG_login/html/login/employStudentInfo.jsp
+			</result>
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+		
+		
+	
+	</package>
+</struts>

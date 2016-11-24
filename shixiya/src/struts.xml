@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.action.excludePattern" value="/echo..*"></constant>
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.maxSize" value="107010960000" />
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+	
+	<include file="struts-father.xml"/>
+	
+	<package name="struts" extends="father" namespace="/">
+		<interceptors>
+			<interceptor name="adminloginInterceptor"
+				class="com.ehighsun.shixiya.Interceptor.AdminLoginIntercepter" />
+			<interceptor name="companyLoginInterceptor"
+				class="com.ehighsun.shixiya.Interceptor.CompanyLoginIntercepter" />
+		</interceptors>
+		<global-results>
+			<result name="adminNotLogin" type="redirect">login.jsp</result>
+			<result name="bussinessNotLogin" type="redirect">companylLogin.jsp
+			</result>
+			<result name="usertNoLogin" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2f5016e1682b8d9f&amp;redirect_uri=http%3a%2f%2fsxy.000861.com%2fshixiya%2fGetUserInfoAction?targeUrl=${targetUrl}&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect
+			</result>
+		</global-results>
+		<action name="enterAdminMain" class="action.EnterAdminMain">
+			<result name="success">/admin/main.jsp</result>
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="adminloginInterceptor" />
+		</action>
+
+		<action name="enterCompanyMain" class="action.EnterAdminMain">
+			<result name="success">/business/companyMain.jsp</result>
+			<interceptor-ref name="defaultStack"/> 
+			<interceptor-ref name="companyLoginInterceptor" />
+		</action>
+
+		<action name="toBBS_*"
+			class="com.ehighsun.shixiya.toBBS.action.ShixiyaToBBSAction" method="{1}">
+			<result name="toBBS">first.jsp</result>
+		</action>
+
+		<action name="login_*"
+			class="com.ehighsun.shixiya.Login.action.AdminLoginAction" method="{1}">
+			<result name="adminloginSuccess" type="redirectAction">admin/enterAdminMain
+			</result>
+			<result name="adminloginFalse">login.jsp</result>
+			<result name="showlogin">login.jsp</result>
+		</action>
+		
+		<action name="clogin_*"
+			class="com.ehighsun.shixiya.Login.action.CompanyLoginAction" method="{1}">
+			<result name="loginSuccess" type="redirectAction">enterCompanyMain
+			</result>
+			<result name="falselogin" type="chain">clogin_showlogin
+			</result>
+			<result name="showlogin">companylLogin.jsp</result>
+		</action>
+
+	</package>
+	
+	<include file="struts-admin.xml"/>
+	<include file="struts-base.xml"/>
+	<include file="struts-student.xml"/>
+	<include file="struts-bpcourse.xml"/>
+	<include file="struts-cpbroadcast.xml"/>
+	<include file="struts-preferenceselect.xml"/>
+	<include file="struts-trainwe.xml"/>
+	<include file="struts-recruitmentinfo.xml"/>
+	<include file="struts-bbs.xml"/>
+</struts>    

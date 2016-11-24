@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="student" extends="father" namespace="/">
+	
+		<!-- 管理学生数据 -->
+		<action name="*_student"
+			class="com.ehighsun.shixiya.student.action.StudentAction" method="{1}">
+			<result name="findStudentById">/omg/video.jsp</result>
+			<result name="appliedAll">/omg/html/personal/enter.jsp</result>
+			<result name="appliedBp">/omg/html/personal/enter.jsp</result>
+			<result name="appliedCp">/omg/html/personal/enter.jsp</result>
+			<result name="participant">/omg/html/personal/attended.jsp</result>
+		</action>
+		
+		<!-- 学生端：B产品数据显示 -->
+		<action name="*_bp"
+			class="com.ehighsun.shixiya.student.action.BPStudentCourseAction"
+			method="{1}">
+			<result name="showAllCourses">/omg/html/curriculum/second/second.jsp</result>
+			<result name="judgeApplyStatus">/omg/html/curriculum/second/childWeb2.jsp
+			</result>
+			<result name="lableFilter">/omg/html/curriculum/second/second.jsp</result>
+			<result name="timeQuantumFilter">/omg/html/curriculum/second/second.jsp</result>
+			<result name="getApplyCourses">omg/html/personal/enter.jsp</result>
+			<result name="nologin">${targetUrl}</result>
+		</action>
+
+		<!-- 学生端：C产品数据显示 -->
+		<action name="*_cp"
+			class="com.ehighsun.shixiya.student.action.CPStudentBroadcastAction"
+			method="{1}">
+			<result name="showAllBroadcast">/omg/html/curriculum/third/boss.jsp</result>
+			<result name="judgeApplyStatus">/omg/html/curriculum/third/childWeb3.jsp</result>
+			<result name="lableFilter">/omg/second2.jsp</result>
+			<result name="nologin">${targetUrl}</result>
+		</action>
+		
+		
+		
+
+		<!-- 用于判断用户是否有基本信息和简历 -->
+		<action name="*_resume" class="com.ehighsun.shixiya.student.action.JudgeResumeAction" method="{1}">
+			<result name="no_info">/omg/html/personal/information.jsp?companyId=${companyId}&amp;${broadcastId!=0?'broadcastId='.concat(broadcastId) :  courseId!=0?'courseId='.concat(courseId)  : recruitId!=null?'recruitId='.concat(recruitId) :'' }</result>
+			<result name="exist_info" type="redirectAction">${addWhichApply}?status=3&amp;companyId=${companyId}&amp;${broadcastId!=0?'broadcastId='.concat(broadcastId): courseId!=0?'courseId='.concat(courseId)  : recruitId!=null?'recruitId='.concat(recruitId) :'' }</result>
+			<result name="exist_info_and_resume" type="redirectAction">${addWhichApply}?status=0&amp;${broadcastId!=0?'broadcastId='.concat(broadcastId):'courseId='.concat(courseId)}</result>
+<!-- 			<result name="no_resume_in_shixiya" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e2d9fc537885b56&amp;redirect_uri=http%3a%2f%2fwww.hotjob.cn%2fwt%2fhighsun%2fmobweb%2flogin&amp;response_type=code&amp;scope=snsapi_base&amp;state=listDelivery</result> -->
+<!-- 			<result name="exist_resume_in_shixiya"> </result> -->
+		</action>
+		
+		<!-- 学生端：Hr周点评数据显示 -->
+		<action name="*_stuhr"
+			class="com.ehighsun.shixiya.student.action.CPstudentHrWeekAction"
+			method="{1}">
+			<result name="showHrCommentList">/omg/html/curriculum/third/hr.jsp</result>
+			<result name="showHrCommentHistory">/omg/childWeb/intro.jsp</result>
+			<result name="lableFilter">/omg/second2.jsp</result>
+		</action>
+
+		<!-- 学生端：报名Action -->
+		<action name="addCpApply"
+			class="com.ehighsun.shixiya.student.action.CPStudentApplyAction"
+			method="addCpApply">
+			<result name="addCpApply" type="chain">judgeApplyStatus_cp</result>
+		</action>
+		<action name="addBpApply"
+			class="com.ehighsun.shixiya.student.action.BPStudentApplyAction"
+			method="addBpApply">
+			<result name="addBpApply" type="chain">judgeApplyStatus_bp</result>
+		</action>
+		<!-- 学生端：报名Action end -->
+
+		<!-- 学生端：简历填写 start -->
+		<action name="addStudentResume"
+			class="com.ehighsun.shixiya.student.action.ResumeStudentAction"
+			method="addStudentResume">
+			<result name="goToBpApply" type="chain">addBpApply</result>
+			<result name="goToCpApply" type="chain">addCpApply</result>
+		</action>
+		
+		<!-- c产品 学生端 是否进入action -->
+		<action name="*_ApplyEnterAction"
+			class="com.ehighsun.shixiya.student.action.ApplyEnterAction" method="{1}">
+			<result name="error">/OMG_login/html/login/hrLogin.jsp</result>
+		</action>
+	
+		<action name="*_writeStudentInfo" class="com.ehighsun.shixiya.student.action.StudentInfomationAction" method="{1}">
+			<result name="error">/omg/html/personal/information.jsp</result>
+			<result name="from_fifth" type="redirectAction">applyPreferenceSelect_PreferenceSelectAction?id=${fifthId}</result>
+			<result name="onlyWriteInfo" type="redirect">judgeResumeIsExist_CPHrCheckStudentResumeAction?isFromPersonResume=true</result>
+ 			<result name="writeStudentInfo" type="redirect">${addWhichApply}?status=3&amp;${broadcastId!=0?'broadcastId='.concat(broadcastId):'courseId='.concat(courseId)}</result> 
+ 			<result name="gotoTargetUrl" type="redirect">${targetUrl}</result>
+<!-- 			<result name="writeStudentInfo" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e2d9fc537885b56&amp;redirect_uri=http%3a%2f%2fwww.hotjob.cn%2fwt%2fhighsun%2fmobweb%2flogin&amp;response_type=code&amp;scope=snsapi_base&amp;state=listDelivery</result> -->
+		</action>
+
+		<action name="gradeJsSdkAction"
+			class="com.ehighsun.shixiya.weixin.action.GradeJsSdkAction" method="gradeJsSdk"></action>
+		<action name="GetUserInfoAction"
+			class="com.ehighsun.shixiya.weixin.action.GetUserInfoAction" method="getUserInfo">
+			<result name="getUserInfo">/omg/html/curriculum/menu.jsp</result>
+			<result name="CourseProduct" type="redirectAction">/omg/html/curriculum/showAllCourses_bp.action</result>
+			<result name="BroadcastProduct" type="redirectAction">/omg/html/curriculum/showAllBroadcast_cp.action</result>
+			<result name="HRListProduct"  type="redirectAction">/omg/html/curriculum/showHrCommentList_stuhr.action</result>
+			<result name="TrainProduct">/omg/html/curriculum/fourth/fourth.jsp</result><!-- 培训we课堂 -->
+			<result name="OutBetterProduct">/omg/html/curriculum/fifth.jsp</result><!-- 社外优选汇 -->
+			<result name="RecruitProduct">/omg/html/curriculum/sixth.jsp</result><!-- 广州招聘资讯 -->
+			<result name="error" type="redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2f5016e1682b8d9f&amp;redirect_uri=http%3a%2f%2fsxy.000861.com%2fshixiya%2fGetUserInfoAction&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE</result>
+			<result name="gotoTargetUrl"  type="redirect">${targeUrl}</result>
+		</action>
+		
+	</package>
+</struts>
